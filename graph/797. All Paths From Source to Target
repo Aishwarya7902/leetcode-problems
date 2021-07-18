@@ -1,4 +1,4 @@
-//DFS WAY(KNOWLEDGE CENTRE VIDEO)
+//DFS WAY(KNOWLEDGE CENTRE VIDEO link:       https://youtu.be/SZ3zpzQk2jg)
 #include<bits/stdc++.h>
 class Solution {
     void dfs(vector<vector<int>>& graph,vector<vector<int>>& final,vector<int>&path,int u){
@@ -15,6 +15,35 @@ public:
         vector<int>path;
         dfs(graph,final,path,0);
         return final;
+        
+    }
+};
+
+
+//BFS _> INTUTION VIDEO   https://youtu.be/qkWfHH0Qevw
+#include<bits/stdc++.h>
+class Solution {
+public:
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+       vector<vector<int>>ans;
+        int n=graph.size()-1;
+        vector<int>path;
+        queue<vector<int>>q;
+        path.push_back(0);
+        q.push(path);
+        while(!q.empty()){
+            path=q.front();
+            q.pop();
+            int val=path.back();
+            if(val==n)ans.push_back(path);
+            else
+            for(int &i:graph[val]){
+                vector<int>v(path);
+                v.push_back(i);
+                q.push(v);
+            }
+        }
+        return ans;
         
     }
 };
