@@ -1,1 +1,20 @@
-
+//DFS WAY(KNOWLEDGE CENTRE VIDEO)
+#include<bits/stdc++.h>
+class Solution {
+    void dfs(vector<vector<int>>& graph,vector<vector<int>>& final,vector<int>&path,int u){
+        path.push_back(u);
+        if(u==graph.size()-1)final.push_back(path);
+        else
+            for(int v:graph[u])dfs(graph,final,path,v);
+                path.pop_back();
+    }
+public: 
+    
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+      vector<vector<int>> final;
+        vector<int>path;
+        dfs(graph,final,path,0);
+        return final;
+        
+    }
+};
