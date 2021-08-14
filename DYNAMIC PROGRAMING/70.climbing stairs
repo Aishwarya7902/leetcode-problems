@@ -1,0 +1,46 @@
+problem:https://leetcode.com/problems/climbing-stairs/
+*****************1. RECURSIVE(GETTING TLE)********************
+int climbStairs(int n) {
+        if(n<=1)return 1;
+        int res1=climbStairs(n-1);
+        int res2=climbStairs(n-2);
+    
+       int ans=res1+res2;
+        return ans;
+       
+        
+        
+    }
+***************************2.MEMOIZATION*******************************
+class Solution {
+public:
+    int climbStairs(int n) {
+     int*dp=new int[n+1];
+       int ans=rec(n,dp);
+        return ans;
+       
+        
+        
+    }
+    private :static int rec(int n,int dp[]){
+        if(n<=1)return 1;
+        if(dp[n]>0)return dp[n];
+        int res1=rec(n-1,dp);
+        int res2=rec(n-2,dp);
+        dp[n]=res1+res2;
+        return dp[n];
+    }
+};
+***************************3.ITERATIVE************************************
+time:O(n)
+int climbStairs(int n) {
+        int *t=new int[n+1];
+        if(n<=1)return 1;
+        t[0]=t[1]=1;
+        for(int i=2;i<=n;i++)
+            t[i]=t[i-1]+t[i-2];
+        return t[n];
+       
+        
+        
+    }
