@@ -1,0 +1,72 @@
+problem:https://practice.geeksforgeeks.org/problems/number-of-coins1824/1
+or leetcode:https://leetcode.com/problems/coin-change/
+video:https://www.youtube.com/watch?v=I-l6PBeERuc&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=16
+
+Expected Time Complexity: O(sum*n)
+Expected Auxiliary Space: O(sum*n)
+
+CODE:
+int minCoins(int coin[], int n, int sum) 
+	{ 
+	    // Your code goes here
+	      int  t[n+1][sum+1];
+    for(int i=0;i<n+1;i++){
+        for( int j=0;j<sum+1;j++){
+            if(i==0){
+                t[i][j]=INT_MAX-1;
+            }
+            if(j==0)t[i][j]=0;
+            
+        }
+    }
+    int k=1;
+    for(int i=1;k<sum+1;k++){
+        if(k%coin[0]==0){
+            t[i][k]=k/coin[0];
+        }
+        else{
+            t[i][k]=INT_MAX-1;
+        }
+    }
+    for(int i=2;i<n+1;i++){
+        for( int j=1;j<sum+1;j++){
+            if(coin[i-1]<=j){
+                t[i][j]=min(t[i][j-coin[i-1]]+1,t[i-1][j]);
+            }
+            else{
+                t[i][j]=t[i-1][j];
+            }
+            
+        }
+    }
+if( t[n][sum]==INT_MAX-1){
+    return -1;
+}
+else{
+    return t[n][sum];
+}
+    
+	} 
+	NOTE:WE CAN IMPROVE SPACE COMPLEXITY...here is a better code
+	video explanation:https://youtu.be/jgiZlGzXMBw
+	
+	Expected Time Complexity: O(sum*n)
+        Expected Auxiliary Space: O(sum)
+
+	int minCoins(int coin[], int n, int sum) 
+	{ 
+	    // Your code goes here
+	   vector<int> dp(sum+1,sum+1);
+	   dp[0]=0;
+	   for(int i=0;i<=sum;i++){
+	       for(int j=0;j<n;j++){
+	           if(coin[j]<=i){
+	               dp[i]=min(dp[i],dp[i-coin[j]]+1);
+	           }
+	       }
+	   }
+	
+     return dp[sum] > sum ? -1 : dp[sum];
+	} 
+	
+	
