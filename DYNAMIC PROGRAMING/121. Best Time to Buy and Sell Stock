@@ -1,0 +1,24 @@
+problem:https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+best video explanation:https://youtu.be/34WE6kwq49U
+brute force:
+time :O(n^2)
+space:O(n)
+int maxProfit(vector<int>& price) {
+       int n=price.size();
+        int dp[n];
+        int maxans=0;
+        for(int  i=0;i<n;i++){
+            int maxval=0;
+            for(int j=i+1;j<n;j++){
+                if(price[j]>price[i]){
+                    maxval=max(maxval,price[j]);
+                }
+            }
+            if(maxval==0)dp[i]=0;
+            else{
+                dp[i]=maxval-price[i];
+            }
+            maxans=max(maxans,dp[i]);
+        }
+        return maxans;
+    }
