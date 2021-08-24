@@ -82,7 +82,9 @@ int maxProfit(vector<int>& price) {
         return maxprofit;
     }
     ****************************   BESTT ONE:TIME AS WELL SPACE OPTIMISED CODE_using min buy price so far*************************************
-    best video explanation:https://youtu.be/eMSfBgbiEjk
+    best video explanation:
+    1.https://youtu.be/eMSfBgbiEjk(TUF)
+    2.https://youtu.be/34WE6kwq49U(Anuj Bhaiya)
      TIME:O(N)
      SPACE:O(1)
     int maxProfit(vector<int>& price) {
