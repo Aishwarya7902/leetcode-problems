@@ -1,5 +1,5 @@
 problem:https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-best video explanation:https://youtu.be/34WE6kwq49U
+
 brute force:what i thought at first :(
 time :O(n^2)
 space:O(n)
@@ -47,6 +47,7 @@ int maxProfit(vector<int>& price) {
     
     
 ******************************** TIME OPTIMISED CODE********************************************************
+best video explanation:https://youtu.be/34WE6kwq49U
 TIME:O(N)
 SPACE:O(N)
 int maxProfit(vector<int>& price) {
@@ -63,7 +64,7 @@ int maxProfit(vector<int>& price) {
         }
         return maxprofit;
     }
-   ******************************************************TIME AS WELL SPACE OPTIMISED CODE*******************************
+   ******************************************************TIME AS WELL SPACE OPTIMISED CODE ~via picking up best sell price*******************************
    TIME:O(N)
    SPACE:O(1)
    
@@ -80,4 +81,18 @@ int maxProfit(vector<int>& price) {
         
         return maxprofit;
     }
-    
+    ****************************TIME AS WELL SPACE OPTIMISED CODE_via choosing the best buy price*************************************
+    best video explanation:https://youtu.be/eMSfBgbiEjk
+     TIME:O(N)
+     SPACE:O(1)
+    int maxProfit(vector<int>& price) {
+       
+       
+        int maxProfit=0;
+        int minPrice=INT_MAX;
+        for(int i=0;i<price.size();i++){
+            minPrice=min(minPrice,price[i]);
+            maxProfit=max(maxProfit,price[i]-minPrice);
+        }
+        return maxProfit;
+    }
