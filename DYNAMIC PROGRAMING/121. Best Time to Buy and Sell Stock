@@ -22,3 +22,20 @@ int maxProfit(vector<int>& price) {
         }
         return maxans;
     }
+********************************OPTIMISED CODE********************************************************
+TIME:O(N)
+SPACE:O(N)
+int maxProfit(vector<int>& price) {
+        int n=price.size();
+        int maxans=0;
+        int maxprofit=INT_MIN;
+       int dp[n];
+       
+        for(int i=n-1;i>=0;i--){
+            maxans=dp[i]=max(maxans,price[i]);
+        }
+        for(int i=0;i<n;i++){
+            maxprofit=max(maxprofit,dp[i]-price[i]);
+        }
+        return maxprofit;
+    }
