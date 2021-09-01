@@ -1,0 +1,25 @@
+problem:https://leetcode.com/problems/min-cost-climbing-stairs/
+video explanation:https://youtu.be/kLCGmZGtImM
+
+*************************METHOD 1 USING TOP DOWN***********************************
+TIME:O(N)
+SPACE:O(N)
+class Solution {
+public:
+     int help(vector<int>& cost,int indx,vector<int>&t){
+         
+       if(indx==cost.size()-1 ||indx==cost.size()-2)return cost[indx];
+         
+         if(t[indx]!=0)return t[indx];
+         int a=help(cost,indx+1,t);
+         int b=help(cost,indx+2,t);
+         return t[indx]=min(a,b)+cost[indx];
+     }
+    int minCostClimbingStairs(vector<int>& cost) {
+        if(cost.size()==2)return min(cost[0],cost[1]);
+        vector<int>t(1001);
+       int x=help(cost,0,t);
+        int y=help(cost,1,t);
+        return min(x,y);
+    }
+};
