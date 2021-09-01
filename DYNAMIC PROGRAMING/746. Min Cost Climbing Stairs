@@ -1,5 +1,6 @@
 problem:https://leetcode.com/problems/min-cost-climbing-stairs/
 video explanation:https://youtu.be/kLCGmZGtImM
+//IN THIS Q WE DONT HAVE TO REACH LAST ELEMENT OF ARRAY RATHER AN ELEMENT AFTER THE LAST ELEMENT
 
 *************************METHOD 1 USING TOP DOWN***********************************
 TIME:O(N)
