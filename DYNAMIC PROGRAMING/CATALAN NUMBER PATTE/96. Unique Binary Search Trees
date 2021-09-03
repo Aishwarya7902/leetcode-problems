@@ -1,0 +1,24 @@
+problem:https://leetcode.com/problems/unique-binary-search-trees/
+video explanation:https://youtu.be/H1qjjkm3P3c
+Expected Time Complexity: O(N).
+Expected Auxiliary Space: O(N)
+
+class Solution {
+public:
+  unsigned long int numTrees(unsigned int n) {
+  unsigned long int dp[n + 1];
+  
+    // Initialize first two values in table
+    dp[0] = dp[1] = 1;
+  
+    // Fill entries in catalan[] using recursive formula
+    for (int i = 2; i <= n; i++) {
+        dp[i] = 0;
+        for (int j = 0; j < i; j++)
+            dp[i] += dp[j] * dp[i - j - 1];
+    }
+  
+    // Return last entry
+    return dp[n];
+    }
+};
