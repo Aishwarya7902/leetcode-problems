@@ -1,0 +1,31 @@
+problem:https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/dynamic-programming/circle-and-chords-official/ojquestion
+video:https://youtu.be/qqcN4ROOusM
+time:O(N)
+space:O(N)
+///////////////////////////LEARNING.................HERE NO OF DIFFERENT NON INTERSECTING CHORDS FOR GIVEN N WILL BE EQUAL TO CATALAN OF N/2//////////////////////
+
+
+#include<iostream>
+using namespace std;
+int CircleAndChords(int n){
+    n=n/2;
+     int dp[n + 1];
+     dp[0] = dp[1] = 1;
+  
+    
+    for (int i = 2; i <= n; i++) { 
+        dp[i] = 0;
+        for (int j = 0; j < i; j++){
+            dp[i] += dp[j] * dp[i - j - 1];
+    }
+  
+}
+    return dp[n];
+    
+}
+int main(){
+    cout<< CircleAndChords(2)<<endl;
+     cout<< CircleAndChords(4)<<endl;
+      cout<< CircleAndChords(6)<<endl;
+    return 0;
+}
