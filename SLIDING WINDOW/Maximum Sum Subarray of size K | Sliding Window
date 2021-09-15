@@ -1,0 +1,25 @@
+PROBLEM STATEMENT:https://practice.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1#
+VIDEO EXPLANATION:https://youtu.be/KtpqeN0Goro
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(1)
+ 
+
+ int maximumSumSubarray(int k, vector<int> &arr , int n){
+        // code here 
+        int sum=0;
+        int mx=INT_MIN;
+        int i=0,j=0;
+        while(j<n){
+            sum+=arr[j];
+            if(j-i+1<k){
+                j++;
+            }
+           else if(j-i+1==k){
+               mx=max(mx,sum);
+               sum-=arr[i];
+               i++;
+               j++;
+           }
+        }
+        return mx;
+    }
