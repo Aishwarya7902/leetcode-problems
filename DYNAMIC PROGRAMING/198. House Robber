@@ -61,3 +61,30 @@ public:
     }
 };
 **************************************************SPACE OPTIMISED SOLUTION************************************
+TIME:O(N)
+SPACE:O(1)
+class Solution {
+public:
+    int rob(vector<int>& num) {
+        int  n=num.size();
+        if(n<=0)return 0;
+        if(n==1)return num[0];
+        if(n==2){
+            return max(num[0],num[1]);
+        }
+        int prev1=0,prev2=num[0];
+        
+        
+        
+        for(int i=1;i<n;i++){
+            num[i]=max(prev2,prev1+num[i]);
+            prev1=prev2;
+            prev2=num[i];
+            
+            
+        }
+        
+        return num[n-1];
+        
+    }
+};
