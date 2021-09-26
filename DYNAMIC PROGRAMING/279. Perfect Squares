@@ -1,0 +1,44 @@
+problem:https://leetcode.com/problems/perfect-squares/
+
+***********************RECURSIVE(😑GETTING TLE)*****************************************
+
+class Solution {
+public:
+    bool isPerfectSquare(int x)
+{
+    // Find floating point value of
+    // square root of x.
+    if (x >= 0) {
+ 
+        int  sr = sqrt(x);
+         
+        // if product of square root
+        //is equal, then
+        // return T/F
+        return (sr * sr == x);
+    }
+    // else return false if n<0
+    return false;
+}
+ 
+    int numSquares(int n) {
+        if(n<=0)return false;
+        if(isPerfectSquare(n)==true)return 1;
+        int mn=INT_MAX;
+        int curr;
+        for(int i=1;i<n;i++){
+            if(isPerfectSquare(i)){
+                curr=1+numSquares(n-i);
+                mn=min(mn,curr);
+            }
+            else{
+                continue;
+            }
+        }
+        return mn;
+        }
+};
+
+**************************************MEMOIZATION**********************
+
+
