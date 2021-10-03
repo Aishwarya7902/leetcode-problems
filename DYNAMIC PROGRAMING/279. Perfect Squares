@@ -79,5 +79,76 @@ public:
         }
 };
 
+/////////////////////////////////BOTTOM UP////////////////////
+
+class Solution {
+public:
+    bool isPerfectSquare(int x)
+{
+    
+    if (x >= 0) {
+        int  a = sqrt(x);
+        return (a * a == x);
+        
+    }
+    // else return false if n<0
+    return false;
+}
+    int help(int p,int k,vector<int>&v){
+        for(int m=p-1;m>0;m--){
+            if(v[m]==1 && m<=k)return m;
+            else
+                continue;
+        }
+      return 0;  
+    }
+ 
+    int numSquares(int n) {
+        vector<int>v(n+1,INT_MAX);
+        v[0]=0;
+        v[1]=1;
+        for(int i=2;i<=n;i++){
+            if(isPerfectSquare(i)){
+                v[i]=1;
+               continue;
+            }
+            for(int j=i-1;j>0;j--){
+                if(v[j]==1){
+                    int q=i/j;
+                    int r=i%j;
+                    while(r>0){
+                        int x=help(r,j,v);
+                        q=q+v[x];
+                        r=r-x;
+                    }
+                    v[i]=min(v[i],q+r);
+                }
+                else{
+                    continue;
+                }
+            }
+        }
+        return v[n];
+        }
+};
+
+***************************************ALL THESE ABOVE WERE MY APPROACHES 😫🥱BUT NOTHING WORKED.....SO AFTER WATCHING A VIDEO AND FINALLY AFTER UNDERSTANDING WHERE I WAS WRONG..LETS TRY AGAIN 😎)
+VIDEO:https://youtu.be/1xfx6M_GqFk
+
+🎈************************************1.RECURSIVE(GETTING TLE)
+
+class Solution {
+public:
+    int numSquares(int n) {
+       int a=sqrt(n);
+        if(a*a ==n)return 1;
+        if(n<=3)return n;
+        int mn=INT_MAX;
+        for(int i=1;i*i<=n;i++){
+            mn=min(mn, 1+numSquares(n-i*i));
+        }
+        return mn;
+    }
+};
 
 
