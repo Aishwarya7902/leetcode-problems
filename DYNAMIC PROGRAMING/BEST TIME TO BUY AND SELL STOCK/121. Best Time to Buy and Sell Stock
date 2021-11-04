@@ -1,0 +1,48 @@
+problem:https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+BRUTE FORCE:
+TIME:O(N2)
+SPACE:O(1)
+
+class Solution {
+public:
+    int maxProfit(vector<int>& price) {
+       
+       
+        int maxprofit=0;
+        for(int i=0;i<price.size()-1;i++){
+            for(int j=i+1;j<price.size();j++){
+                if((price[j]-price[i])>maxprofit){
+                   maxprofit=price[j]-price[i]; 
+                }
+            }
+        }
+        return maxprofit;
+    }
+};
+
+//////////////////////SELF OPTIMISED
+TIME:O(N)
+SPACE:O(1)
+class Solution {
+public:
+    int maxProfit(vector<int>& arr) {
+       
+       
+        int profit=0;
+        int lowest=arr[0];
+        for(int i=0;i<arr.size();i++){
+            if((arr[i]-lowest)>profit){
+                profit=arr[i]-lowest;
+            }
+            else{
+                if(arr[i]<lowest)
+                    lowest=arr[i];
+            }
+        }
+        return profit;
+    }
+};
+
+//////////////////// MOST OPTIMISED(😎CREDIT ANUJ BHAIYA)
+
+
