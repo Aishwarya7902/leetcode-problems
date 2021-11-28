@@ -1,0 +1,52 @@
+problem:https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
+best video explanation:https://youtu.be/wuzTpONbd-0
+
+/* 
+dividing graph into two parts at every possible point and performing 1-1 transaction on both sides ,since we can perform at most 2 transactions
+*/
+time:O(n)
+space:O(n)
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int maxProfit(vector<int>& arr) {
+        int n=arr.size();
+      vector<int>dpl(n);
+        vector<int>dpr(n);
+        int least=arr[0];
+        int pst=0;
+        for(int i=1;i<n;i++){
+            if(arr[i]<least){
+                least=arr[i];
+            }
+            pst=arr[i]-least;
+            if(pst>dpl[i-1]){
+                dpl[i]=pst;
+            }
+            else{
+                dpl[i]=dpl[i-1];
+            }
+                
+        }
+        int maxm=arr[n-1];
+        int pbt=0;
+        for(int i=n-2;i>=0;i--){
+            if(arr[i]>maxm){
+                maxm=arr[i];
+            }
+            pbt=maxm-arr[i];
+            if(pbt>dpr[i+1]){
+                dpr[i]=pbt;
+            }
+            else{
+                dpr[i]=dpr[i+1];
+            }
+        }
+        int overallpro=INT_MIN;
+        for(int i=0;i<n;i++){
+            overallpro=max(overallpro,dpl[i]+dpr[i]);
+        }
+        return overallpro;
+        
+    }
+};
