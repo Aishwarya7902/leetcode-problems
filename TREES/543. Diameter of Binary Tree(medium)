@@ -1,0 +1,44 @@
+problem:https://leetcode.com/problems/diameter-of-binary-tree/
+video:https://youtu.be/Rezetez59Nk
+
+//////////brute force
+/*
+maintain a maxx variable 
+go to every node find its left height and right height 
+update max(maxx,lh+rh)
+return maxx
+*/
+TC:O(N2)
+class Solution {
+public:
+   int maxDepth(TreeNode* root) {
+       if(root==NULL){
+           return 0;
+       } 
+        int lh=maxDepth(root->left);
+        int rh=maxDepth(root->right);
+        return max(lh,rh)+1;
+    }
+    void solve(TreeNode* root,int &maxi){
+        if(root==NULL){
+            return ;
+        }
+       
+        
+        int l=maxDepth(root->left);
+        int r=maxDepth(root->right);
+        maxi=max(maxi,l+r);
+        solve(root->left,maxi);
+        solve(root->right,maxi);
+       
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(root==NULL){
+            return 0;
+        }
+        int maxi=INT_MIN;
+        
+       solve(root,maxi);
+        return maxi;
+    }
+};
