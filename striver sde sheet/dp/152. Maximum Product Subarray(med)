@@ -6,6 +6,16 @@ time:O(n^3)
 space:O(1)
 */
 
+
+/*ALGORITHM
+1.take ans varible initialize with INT_MIN
+2.take first index cal maxproduct for subarrays of size 1,2,3... at the same time when u make subarray of each size just update the ans variable..similary repeat for other indices too
+3.here i represents start index of our subarray
+4.j represents end point of our subarray 
+5.k represents the curr index we are calculating prod for
+6.return ans
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 class Solution {
