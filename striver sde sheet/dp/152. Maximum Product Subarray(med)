@@ -38,3 +38,29 @@ public:
         return ans;
     }
 };
+
+/*
+OTIMISED CODE
+tc:O(n)
+sc:O(1)
+video exlaination:https://youtu.be/vtJvbRlHqTA
+pseudo code:what we are doing here is that each time we are moving forward we are 
+carrying with us the max so far as well as the min so far then at every moment we calculate current max  
+...it may be possible that our past value has reduced to zero so at the current index we will start from that index...
+then after calculating curr max we are updating  ans,maxSoFar and minSoFar
+*/
+int maxProduct(vector<int>& a) {
+        int n=a.size();
+         int ans=a[0];
+	    int curr=a[0];
+	    int  minSoFar=a[0];
+	   int maxSoFar=a[0];
+	    for(int i=1;i<n;i++){
+	        curr=max(maxSoFar*a[i],max(minSoFar*a[i],a[i]));
+	        ans=max(ans,curr);
+	         minSoFar=min(maxSoFar*a[i],min(minSoFar*a[i],a[i]));
+	         maxSoFar=curr;
+	    }
+	   
+	    return ans;
+
