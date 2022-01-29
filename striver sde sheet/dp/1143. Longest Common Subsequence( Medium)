@@ -1,0 +1,97 @@
+problem:https://leetcode.com/problems/longest-common-subsequence/
+video:(recursive) :https://youtu.be/4Urd0a0BNng
+      (memoization) :https://youtu.be/g_hIx4yn9zg
+      (bottom up) :https://youtu.be/hR3s9rGlMTU
+      
+/* BRUTE FORCE:
+tc: O(2^n)
+*/
+class Solution {
+public:
+    int help(string text1, string text2,int l1,int l2){
+        if(l1==0 || l2==0){
+            return 0;
+        }
+         if(text1[l1-1]==text2[l2-1]){
+            return 1+help(text1,text2,l1-1,l2-1);
+        }
+        else{
+            return max(help(text1,text2,l1-1,l2),help(text1,text2,l1,l2-1));
+        }
+    }
+    int longestCommonSubsequence(string text1, string text2) {
+        
+     int l1=text1.size();
+        int l2=text2.size();
+        
+       return help(text1,text2,l1,l2);
+    }
+};
+
+/* MEMOIZATION 
+tc:O(mn)
+sc:O(mn)
+here m is length of string 1 and n is length of string 2
+*/
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int help(string text1, string text2,int l1,int l2){
+        int t[l1+1][l2+1];
+        memset(t,-1,sizeof(t));
+        if(l1==0 || l2==0){
+            return 0;
+        }
+        if(t[l1][l2]!=-1){
+            return t[l1][l2];
+        }
+         if(text1[l1-1]==text2[l2-1]){
+            return t[l1][l2]=1+help(text1,text2,l1-1,l2-1);
+        }
+        else{
+            return t[l1][l2]=max(help(text1,text2,l1-1,l2),help(text1,text2,l1,l2-1));
+        }
+    }
+    int longestCommonSubsequence(string text1, string text2) {
+        
+     int l1=text1.size();
+        int l2=text2.size();
+        
+       return help(text1,text2,l1,l2);
+    }
+};
+
+/* BOTTOM UP 
+TC:
+SC:
+*/
+public:
+    int help(string text1, string text2,int l1,int l2){
+        int t[l1+1][l2+1];
+       for(int i=0;i<=l1;i++){
+           for(int j=0;j<=l2;j++){
+               if(i==0 || j==0){
+                   t[i][j]=0;
+               }
+           }
+       }
+        for(int i=1;i<=l1;i++){
+           for(int j=1;j<=l2;j++){
+               if(text1[i-1]==text2[j-1]){
+                   t[i][j]=t[i-1][j-1]+1;
+               }
+               else{
+                   t[i][j]=max(t[i-1][j],t[i][j-1]);
+               }
+           }
+       }
+        return t[l1][l2];
+    }
+    int longestCommonSubsequence(string text1, string text2) {
+        
+     int l1=text1.size();
+        int l2=text2.size();
+        
+       return help(text1,text2,l1,l2);
+    }
+};
