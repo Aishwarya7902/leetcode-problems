@@ -62,8 +62,8 @@ public:
 };
 
 /* BOTTOM UP 
-TC:
-SC:
+Time Complexity : O(m*n)
+Space Complexity : O(m*n)
 */
 public:
     int help(string text1, string text2,int l1,int l2){
