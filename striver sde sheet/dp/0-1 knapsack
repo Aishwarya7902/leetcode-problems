@@ -1,0 +1,125 @@
+//*******************RECURSIVE*************************//
+//********************Time Complexity: O(2 ^ N)
+	Space Complexity: O(N) BECAUSE WE ARE USING RECURSIVE FUNCTION FOR EVERY ELEMENT SO IT WILL USE A STACK******************//
+	/*VIDEO:
+	1. https://youtu.be/0qCVRZE91EE( striver bhaiya)
+	2.https://youtu.be/kvyShbFVaY8( aditya verma)
+	*/
+	
+	
+int knapsack(vector<int> &val, vector<int> &wt, int n, int w)
+{
+	// Write your code here
+    if(n==0 || w==0){
+        return 0;
+    }
+    if(wt[n-1]<=w){
+        return max(val[n-1]+knapsack(val,wt,n-1,w-wt[n-1]),
+                 knapsack(val,wt,n-1,w));
+    }
+    else{
+        return knapsack(val,wt,n-1,w);
+    }
+}
+//********************memoization(GETTING TLE )
+Time Complexity: O(N * W)
+	Space Complexity: O(N * W)************************//
+/*	
+video:https://youtu.be/fJbIuhs24zQ(aditya verma)
+*/
+
+
+#include<bits/stdc++.h>
+ 
+int maxProfit(vector<int> &val, vector<int> &wt, int n, int w)
+{
+	// Write your code here
+    int** t;
+    t = new int*[n+1];
+ 
+    // loop to create the table dynamically
+    for (int i = 0; i <=n; i++)
+        t[i] = new int[w + 1];
+ 
+    // loop to initially filled the
+    // table with -1
+    for (int i = 0; i <=n; i++)
+        for (int j = 0; j < w + 1; j++)
+            t[i][j] = -1;
+    if(n==0 || w==0){
+        return 0;
+    }
+    if(t[n][w]!=-1)return t[n][w];
+    if(wt[n-1]<=w){
+        return t[n][w]=max(val[n-1]+maxProfit(val,wt,n-1,w-wt[n-1]),
+                 maxProfit(val,wt,n-1,w));
+    }
+    else{
+        return  t[n][w]=maxProfit(val,wt,n-1,w);
+    }
+}
+//******************************************BOTTOM-UP***********************//
+/* TC:O(N*M)
+   SC:O(N*M)
+   video:https://youtu.be/ntCGbPMeqgg (aditya verma)
+   */
+int knapsack(vector<int> &val, vector<int> &wt, int n, int w){
+    int  t[n+1][w+1];
+    for(int i=0;i<n+1;i++){
+        for(int j=0;j<w+1;j++){
+            if(i==0 || j==0){
+                t[i][j]=0;
+            }
+           
+            
+        }
+    }
+for(int  i=1;i<=n;i++){
+    for(int j=1;j<=w;j++){
+        if(arr[i-1]<=j){
+            t[i][j]=max(t[i-1][j],t[i-1][j-wt[i-1]]);
+        }
+        else{
+            t[i][j]=t[i-1][j];
+        }
+    }
+}
+return t[n][w];
+}
+
+/* FURTHER SPACE OPTIMIZATION 
+TC: O(M*N)
+SC:O(N)
+VIDEO(EXTREMELY HELPFUL TO UNDERSTAND THIS APPROACH): https://youtu.be/7C_FIc7PytA
+BLOG(HELPFUL TO UNDERSTAND THIS APPROACH)  :
+https://www.codingninjas.com/codestudio/problems/1072980?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=2
+*/
+
+
+
+int knapSack(int w, int wt[], int val[], int n) 
+    { 
+       // Your code here
+       int t[2][w+1];
+       for(int i=0;i<2;i++){
+           for(int j=0;j<=w;j++){
+               if(i==0 || j==0){
+                   t[i%2][j]=0;
+               }
+           }
+       }
+       for(int i=0;i<=n;i++){
+           for(int j=0;j<=w;j++){
+               if(i==0 || j==0){
+                   t[i%2][j]=0;
+               }
+             else if(wt[i-1]<=j){
+                  t[i%2][j]=max(val[i-1]+t[(i+1)%2][j-wt[i-1]],t[(i+1)%2][j]);
+              }
+              else{
+                  t[i%2][j]=t[(i+1)%2][j];
+              }
+           }
+       }
+       return t[n%2][w];
+    }
