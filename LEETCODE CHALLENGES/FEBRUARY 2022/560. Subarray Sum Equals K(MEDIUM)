@@ -1,1 +1,126 @@
 
+PROBLEM:https://leetcode.com/problems/subarray-sum-equals-k/
+VIDEO:https://youtu.be/HbbYPQc-Oo4
+/*
+BRUTE FORCE:
+TC:O(N*3)
+SC:O(1)
+*/
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int count=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                int sum=0;
+                for(int k=i;k<=j;k++){
+                    sum+=nums[k];
+                }
+                if(sum==k){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+};
+
+/* further optimisation
+LEARNT A NEW CONCEPT OF PREFIX SUM HERE...HERE PREFIX SUM NAME IS LS
+SUM[i,j]=LS[j]-LS[i-1]
+//here SUM[i,j] means sum of the subarray starting form pointer i and ending at j
+if(i==0)
+SUM[i,j]=LS[j];
+
+
+tc:O(n)+O(n*2)=O(n*2) here we are using two for loops
+sc:O(n) we are using extra vector of prefixSum
+*/
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        
+        int count=0;
+        int n=nums.size();
+        vector<int>prefixSum;
+        int sum=nums[0];
+        v.push_back(sum);
+        for(int i=1;i<nums.size();i++){
+            sum+=nums[i];
+            v.push_back(sum);
+            
+        }
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                
+               if(i==0){
+                    if(v[j]==k)count++;
+                }
+                else
+                {
+                    if((v[j]-v[i-1])==k){
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+};
+/* FURTHER OPTIMIZATION
+FOR BETTER UNDERSTANDING GO TO TIMESTAMP 3:35 TO 4:57 OF ABOVE GIVEN VIDEO
+tc:O(n*2)
+sc:O(1)
+PSEUDO CODE: what we are doing here ...since we were already traversing through all possible subarrays
+like for eg for subarray starting at i=0 we were traversing through subarrays of size 1 ,2,3,4...and so on and so forth
+so when you are already visiting at each subarry then calculate its sum ...for every i initialise sum =0
+now we start j=i ,it means now our subarray size is 1 ...so lets add nums[j] to our sum...this means that now sum variable contains sum of a subarray which is starting 
+from index i=0 and its size is 1 ...so if this sum==k which is our target then only we will increment our count.
+now we will increment j and add nums[j] to sum variable ,now this means that now in our sum variable we have a sum of a subarray which start from i=0 and whose size is 2
+similary increment j  (till j<nums.size() )and find sums of all possible subarrays which start at i =0 and end at j
+
+proceed further by incrementing i that means now our starting point of subarray is new i ...similarly move j and calculate sum and update count when possible.
+*/
+int subarraySum(vector<int>& nums, int k) {
+        
+        int count=0;
+        int n=nums.size();
+       int sum;
+        for(int i=0;i<n;i++){
+            sum=0;
+            for(int j=i;j<n;j++){
+                sum+=nums[j];
+                if(sum==k)count++;
+              
+            }
+        }
+        return count;
+    }
+    
+    /*MOST OPTIMISED
+    TC:O(N)
+    SC:O(N)
+    for better understanding see from 7:25 to 11:35 in video :https://youtu.be/HbbYPQc-Oo4
+    another video that must be referred for better understanding :https://youtu.be/20v8zSo2v18
+    */
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int>m;
+        
+        int count=0;
+        int n=nums.size();
+       int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+            if(sum==k){
+                count++;
+            }
+             if(m.find(sum-k)!=m.end()){
+                count+= m[sum-k];
+            }
+            m[sum]++;
+        }
+        return count;
+    }
