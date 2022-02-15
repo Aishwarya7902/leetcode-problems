@@ -19,3 +19,21 @@ int singleNumber(vector<int>& nums) {
         }
         return 0;
     }
+
+/* FURTHER OPTIMISATION
+tc: O(nlogn)+ O(n)=O((nlogn) here nlogn is for sorting and O(n) is for  traversing the nums vector
+sc: O(1)
+*/
+int singleNumber(vector<int>& nums) {
+       sort(nums.begin(),nums.end());
+       int i;
+        for(i=0;i<nums.size()-1;){
+            
+          if(nums[i]!=nums[i+1]){
+             return nums[i];
+          }
+            else
+            i=i+2;
+        }
+       return nums[i];
+    }
