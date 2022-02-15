@@ -1,0 +1,21 @@
+problem:https://leetcode.com/problems/single-number/
+/*
+brute force 
+tc:o(n)
+sc:o(n)
+PSEUDO CODE
+1.travese nums and update map with the frequecy of each element
+2.traverse map and if frequency of any element is 1 return that element
+*/
+int singleNumber(vector<int>& nums) {
+     unordered_map<int,int>mp;
+        for(auto x:nums){
+            mp[x]++;
+        }
+        for(auto it:mp){
+            if(it.second==1){
+                return it.first;
+            }
+        }
+        return 0;
+    }
