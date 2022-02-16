@@ -1,0 +1,21 @@
+/* 
+BRUTE FORCE ~ USING RECURSION
+TC:0(N)
+SC:NO EXTRA SPACE EXCEPT RECURSION WILL USE STACK
+PSEUDO CODE:
+1.TAKE TWO ITERATORS i,j
+2.IF head==NULL ||head->next==NULL RETURN HEAD AS THIS IS OUR BASE CASE
+3.SWAP THE VALUE OF NODES AT THE iTH AND jTH POINTER 
+4.CALL RECURSION FOR NODES NEXT TO J
+5.AT LAST RETURN HEAD
+*/
+ListNode* swapPairs(ListNode* head) {
+     if(head==NULL ||head->next==NULL){
+         return head;
+     }
+        
+      ListNode*p=head->next;
+        swap(head->val,p->val);
+        swapPairs(p->next);
+        return head;
+    }
