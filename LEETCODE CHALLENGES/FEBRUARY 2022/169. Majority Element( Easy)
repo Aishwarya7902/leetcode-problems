@@ -1,0 +1,19 @@
+problem:https://leetcode.com/problems/majority-element/
+//brute force
+//tc:O(n)
+    //sc:O(n)
+    /*PSEUDO CODE
+    1.update frequency of each no occuring in nums in the map
+    2.traverse map and if mp[i]>n/2 return i(here i have taken as just as an example)
+    */
+    int majorityElement(vector<int>& nums) {
+      unordered_map<int,int>mp;
+        for(auto x:nums){
+            mp[x]++;
+        }
+        for(auto it:mp){
+            if(it.second>(nums.size()/2))
+                return it.first;
+        }
+        return 0;
+    }
