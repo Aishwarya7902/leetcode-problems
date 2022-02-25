@@ -1,0 +1,35 @@
+problem:https://leetcode.com/problems/sort-list/
+//brute force
+//tc:O(nlogn)_for sorting the vector +O(n)_for traversal in list + O(n)_for traversal in vector
+//sc:O(n) extra vector used
+/*PSEUDO CODE
+1.traverse list and store each of its element in a vector 
+2.sort vector in ascending order
+3.traverse vector and update every element of list with the elements of vector
+4.since vector is in sorted form hence list will also be in sorted form
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        vector<int>v;
+        ListNode* temp;
+        temp=head;
+        while(temp!=NULL){
+            v.push_back(temp->val);
+            temp=temp->next;
+        }
+        sort(v.begin(),v.end());
+        temp=head;
+        for(auto x:v){
+           temp->val=x;
+            temp=temp->next;
+        }
+        return head;
+    }
+};
