@@ -1,1 +1,41 @@
 problem:https://leetcode.com/problems/counting-bits/
+/*
+BRUTE FORCE
+TC:O(N)
+SC:O(N)
+pseudo code:
+1.make a  Convert_to_Binary function to convert a decimal to binary 
+2.make a Count_Ones function which counts no of ones in a given binary no
+3.given question states we are given a number n ,we a have to return a vector of size n+1
+such that arr[i] contains no of ones in the binary of i 
+for eg if i=2 then at arr[2] contains no ones in the binary of 2(which is 10) which is 1 hence arr[2]=1;
+similarly we will go for i=0 to i=n and will store our ans in a vector and will return it
+*/
+
+vector<int> Convert_to_Binary(int n){
+        vector<int>v;
+        while(n){
+            v.push_back(n%2);
+            n/=2;
+        }
+        return v;
+    }
+    int Count_Ones(vector<int>&v){
+        int count=0;
+        for(int i=0;i<v.size();i++){
+            if(v[i]==1){
+                count++;
+            }
+        }
+        return count;
+            
+    }
+    vector<int> countBits(int n) {
+         vector<int>ans;
+        for(int i=0;i<=n;i++){
+            vector<int>curr=Convert_to_Binary(i);
+            int n=Count_Ones(curr);
+            ans.push_back(n);
+        }
+        return ans;
+    }
