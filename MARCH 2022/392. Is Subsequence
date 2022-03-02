@@ -44,6 +44,7 @@ public:
 };
 
 /* OPTIMISATION
+BEST INTUTION:https://www.linkedin.com/posts/mayank-singh-1004981a4_is-subsequence-ugcPost-6904612737268469760-S294
 TC:O(m+n)
 SC:O(1)
 PSEUDO CODE
