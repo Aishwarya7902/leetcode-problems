@@ -1,0 +1,44 @@
+PROBLEM:https://leetcode.com/problems/is-subsequence/
+
+/*brute force
+tc: O(n*m)
+sc: O(n*m)
+pseudo code
+1.we will find longest common subsequence of both given strings
+2.if length lcs of both strings==length of string which is to be checked wheather it is subsequence in other string ,
+return true
+3.else return false
+*/
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int lcs(string s,string t,int m,int n){
+        int dp[m+1][n+1];
+        for(int i=0;i<=m;i++){
+            for(int j=0;j<=n;j++){
+                if(i==0 || j==0){
+                    dp[i][j]=0;
+                }
+            }
+        }
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                if(s[i-1]==t[j-1]){
+                    dp[i][j]=1+dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+    bool isSubsequence(string s, string t) {
+      int m=s.size();
+      int n=t.size();
+        int p=lcs(s,t,m,n);
+        if(p==m)return true;
+        return false;
+        
+    }
+};
