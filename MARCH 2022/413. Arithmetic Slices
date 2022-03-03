@@ -1,0 +1,45 @@
+PROBLEM:https://leetcode.com/problems/arithmetic-slices/
+BEST INTUTION EXPLANATION:https://leetcode.com/problems/arithmetic-slices/discuss/1814371/C%2B%2B-oror-Easy-To-Understand-oror-Full-Explanation
+
+/*BRUTE FORCE
+TIME COMPLEXITY
+O(N * N)
+
+SPACE COMPLEXITY
+O(1)
+PSEUDO CODE
+EXPLANATION
+
+The Idea is Simple , the array is called arithmetic if it consists of at least 3 elements.
+So, firstly if arr_size is < 3 , we will return false.
+The second requirement of the question is, that the difference b/w any two consecutive elements should be same.
+so running a loop from i = 0 to nums.size() - 2 as we need at least 2 consecutive elements.
+now we will store the difference of first 2 elements in a diff variable.
+Again, we will traverse a loop to find how many consecutive pairs are with same diff.
+running a inner loop from i + 2 as the outer for loop has calculcated the diff of first 2 elements for us.
+now if the difference of arr[j] - arr[j-1] ,current and previous element is same , this means we find a consecutive pair, with same diff, therefore we will increase the count.
+If the diff is not same then we will break the loop, as we need consecutive elements diff to be same.
+Return the Count.
+*/
+class Solution {
+public:
+   int count=0;
+    
+    int numberOfArithmeticSlices(vector<int>& nums) {
+      int n=nums.size();
+        if(n<=2)return 0;
+       
+        
+        for(int i=0;i<n-2;++i){
+            int diff=nums[i+1]-nums[i];
+            for(int j=i+2;j<n;++j){
+               if((nums[j]-nums[j-1])==diff)
+                
+                    ++count;
+                else
+                    break;
+            }
+        }
+        return count;
+    }
+};
