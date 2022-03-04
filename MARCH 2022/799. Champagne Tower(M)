@@ -1,0 +1,35 @@
+PROBLEM:https://leetcode.com/problems/champagne-tower/
+BEST INTUTION:https://www.linkedin.com/feed/update/urn:li:activity:6905339183242829824/
+TC:O(1)
+SC:O(1)
+/*
+I HAVE WRITTEN TC AND SC AS O(1)
+ACTUALLY IT WILL BE O(R^2) WHERE R=NO OF ROWS ,SINCE R CAN BE MAX 100 ,SO R^2=10000 WHICH CAN BE CONSIDERED AS CONSTANT TIME AND SPACE
+*/
+
+
+
+double champagneTower(int poured, int query_row, int query_glass) {
+        //dp matrix
+        double dp[101][101] = {0.0};
+    
+        // as first glass will be poured always
+        // ans overflow will be flowed to next level
+        dp[0][0] = poured;
+    
+        for (int i = 0; i <=query_row; i++)
+        {
+            for (int j = 0; j <= i; j++)
+            {
+                // If the glass >=1
+                if (dp[i][j] >= 1)
+                {
+                    // split  (v[i][j] - 1) into next level
+                    dp[i + 1][j]     += (dp[i][j] - 1) / 2.0;
+                    dp[i + 1][j + 1] += (dp[i][j] - 1) / 2.0;
+                    dp[i][j] = 1;
+                }
+            }
+        }
+        return dp[query_row][query_glass];
+    }
