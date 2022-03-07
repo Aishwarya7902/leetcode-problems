@@ -25,8 +25,8 @@ sc:O(1)
   /*
   USING TWO POINTER
   BEST EXPLAINATION:https://leetcode.com/problems/merge-two-sorted-lists/discuss/839266/C%2B%2B-solution-Iterative-and-recursion
-  TC:
-  SC:
+  TC:O(n)
+  SC:O(n)
   */
   ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         
