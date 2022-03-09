@@ -1,0 +1,27 @@
+problem:leetcode.com/problems/linked-list-cycle/
+BEST EXPLAINATION:
+https://www.linkedin.com/in/mayank-singh-1004981a4/recent-activity/shares/
+
+
+
+/* 
+BRUTE FORCE
+TC:O(N)
+SC:O(N)
+PSEUDO CODE
+the idea is simple we store every node in a hashmap and while traversing the list,if we encounter some node which is already present in the map ,we know there must be a cycle
+COZ CYCLE ITSELF MEANS: There is a cycle in a linked list if there is some node in the list that can be reached again .
+NOTE : WE WILL STORE POINTER CORRESPONDING TO EACH NODE NOT THE VALUE ITSELF
+*/
+
+bool hasCycle(ListNode *head) {
+      unordered_map<ListNode *,int>mp;
+      ListNode* temp=head;
+        while(temp){
+           if(mp.find(temp)!=mp.end())return true;
+            else
+                mp[temp]=1;
+            temp=temp->next;
+        }
+        return false;
+    }
