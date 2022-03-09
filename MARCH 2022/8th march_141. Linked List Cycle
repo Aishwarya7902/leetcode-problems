@@ -25,3 +25,19 @@ bool hasCycle(ListNode *head) {
         }
         return false;
     }
+    
+    /*FURTHER OPTIMISATION
+    TC:O(N)
+    SC:O(1)
+    PSEUDO CODE  as well as learning:
+   1. we  will use the concept of fast and slow pointer here ,lets say we start our slow pointer from position 1 and fast from one position ahead of slow 
+    fast  moves faster than slow 
+   2. now if someone is already fast and he started a position ahead then if there isn't any loop then slow will never catch fast ...right?
+   3.but if there is a loop then only slow can catch fast
+   4.getting idea why fast is kept ahead of slow..............???????
+   5.now we know that fast and slow will have speed  difference...but by how much?
+   actually we can choose any speeds as long as their speed difference is coprime with the lenght of linked list
+   but here we dont know the lenght n
+   6. 1 IS A NUMBER WHICH IS COPRIME WITH EVERY NUMBER............RIGHT????
+   7.so slow moves by one step and fast moves by two steps and hence speed difference is 1
+   8.getting idea why fast moves by 2 steps and slow moves by 1 step..........??????????
