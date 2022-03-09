@@ -41,3 +41,17 @@ bool hasCycle(ListNode *head) {
    6. 1 IS A NUMBER WHICH IS COPRIME WITH EVERY NUMBER............RIGHT????
    7.so slow moves by one step and fast moves by two steps and hence speed difference is 1
    8.getting idea why fast moves by 2 steps and slow moves by 1 step..........??????????
+   
+   */
+   
+   bool hasCycle(ListNode *head) {
+      if(head==NULL)return 0;
+        ListNode* slow=head;
+        ListNode* fast=head->next;
+        while(fast && fast->next){
+            if(slow==fast)return 1;
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return 0;
+    }
