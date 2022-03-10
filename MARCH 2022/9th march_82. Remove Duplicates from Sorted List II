@@ -1,1 +1,49 @@
 problem:leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+/*
+BRUTE FORCE 
+TC:O(N)
+SC:O(N)
+PRSEUDO CODE:
+first of all take a map and traverse the linked list and store the frequency of each element of LL in the map.
+
+1.make a new empty node and take a dummy as well as a ans pointer and point both these pointers to the empty node which we have made
+2.start a temp pointer from head of given linked list
+3.check in map if the frequency of val of temp pointer ==1
+if yes then dummy->next =temp
+and then point dummy to its next element
+i.e dummy=dummy->next
+4.move temp to its next element
+i.e temp=temp->next
+
+5.break the previous bond of dummy by 
+dummy->next=NULL;
+👀 NOTE : IT IS VERY IMPORTANT TO BREAK THE BOND OF DUMMY NEXT ....IF WE DONT DO SO THEN WE WILL HAVE THE SAME LL AS GIVEN IN THE QUESTION.
+6.repeat above steps untill temp is not NULL;
+7.at last return ans->next
+*/
+
+ListNode* deleteDuplicates(ListNode* head) {
+        ListNode *dummy,*temp,*ans;
+        dummy = new ListNode();
+      ans= dummy;
+        temp=head;
+       unordered_map<int,int>mp;
+        while(temp){
+            mp[temp->val]++;
+            temp=temp->next;
+        } 
+        temp=head;
+        while(temp){
+            if(mp[temp->val]==1){
+               if(dummy){ 
+                dummy->next=temp;
+                dummy=dummy->next;
+                    
+                }
+                
+            }
+            temp=temp->next;
+            dummy->next=NULL;    
+        }
+        return ans->next;
+    }
