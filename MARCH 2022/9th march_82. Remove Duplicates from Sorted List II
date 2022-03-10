@@ -47,3 +47,27 @@ ListNode* deleteDuplicates(ListNode* head) {
         }
         return ans->next;
     }
+    
+    /*OPTMISED
+    TC:O(N)
+    SC:O(1)
+    BEST EXPLAINATION:https://youtu.be/9iJ3UsB9vMo
+    */
+    
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode *dummy,*prev;
+        dummy = new ListNode(0,head);
+        prev= dummy;
+        while(head){
+            if(head->next && head->val==head->next->val){
+                while(head->next && head->val==head->next->val){
+                    head=head->next;
+                }
+                prev->next=head->next;
+            }
+            else
+                prev=prev->next;
+            head=head->next;
+        }
+        return dummy->next;
+    }
