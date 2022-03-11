@@ -1,0 +1,53 @@
+problem:https://leetcode.com/problems/rotate-list/
+
+/* BRUTE FORCE (thought on my own)
+TC:O(N)
+SC:O(1)
+PSEUDO CODE:
+1.if k i.e no of rotations to be done is zero just simly return head
+2.if head is null return head
+3.if head->next==NULL it means there is only one node in LL .........hence kitna v rotate kar lo wahi node milega tumhe😉 then why to do extra calculations ...simply return head
+4.calculate size of LL 
+5.if we have to do no of rotations which is a multiple of size of ll then after rotation ll becomes same hence there is no use rotation ...simply return head
+6.else k=k%size coz rotations which are multiple of size are of no use to use hence remove them
+7.traverse the ll and find the pointer corresponding to last element as well as a pointer prior to last element 
+8.simply put prev->next=NULL
+9.last->next=head
+10.now make new head as last 
+11.repeat the process for new k and then do k--
+*/
+
+ListNode* rotateRight(ListNode* head, int k) {
+        if(k==0)return head;
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        int size=0;
+        ListNode *temp=head;
+        while(temp){
+            size++;
+            temp=temp->next;
+        }
+        if(k%size==0)return head;
+        else{
+           k=k%size;
+        }
+        
+        ListNode *move,*prev;
+       
+        
+        while(k){
+         move=head;
+        while(move->next){
+            prev=move;
+            move=move->next;
+        }
+        prev->next=NULL;
+        move->next=head;
+        head=move;
+        k--;
+        }
+        return head;
+    }
+
+
