@@ -1,0 +1,18 @@
+problem:https://leetcode.com/problems/boats-to-save-people/
+BEST SOLUTION:https://www.linkedin.com/feed/update/urn:li:activity:6912585090690600960/
+TC:O(NLOGN)
+SC:O(N)
+int numRescueBoats(vector<int>& people, int limit) {
+        sort(people.begin(),people.end());
+      int low=0;
+        int high=people.size()-1;
+        int ans=0;
+        while(low<=high){
+            if(people[low]+people[high]<=limit){
+                low++;
+            }
+            ans++;
+            high--;
+        }
+        return ans;
+    }
