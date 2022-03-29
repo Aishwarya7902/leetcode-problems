@@ -53,3 +53,28 @@ public:
         return 0;
     }
 };
+
+/*USING SET
+pesudo code
+1.traverse the vector and if element is not present in the set just insert it in set
+2.if element is already in set..it means it is the duplicate element...return it
+tc:o(n)
+sc:o(n)
+*/
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+       set<int>s;
+        for(auto x:nums){
+            if(s.find(x)==s.end()){
+                s.insert(x);
+            }
+            else{
+                return x;
+            }
+        }
+        return 0;
+    }
+};
