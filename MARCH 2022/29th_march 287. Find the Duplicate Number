@@ -2,6 +2,9 @@ problem:https://leetcode.com/problems/find-the-duplicate-number/
 
 /*
 BRUTE FORCE 
+pseudo code:1.store frequency of elements in a map
+2.traverse map
+3.if in map any element has frequency >1 return that element;
 TC:0(N)
 SC:O(N)
 */
@@ -17,5 +20,36 @@ public:
             if(x.second>1)return x.first;
         }
        return 0; 
+    }
+};
+
+
+/*
+FURTHER OPTIMISATION
+tc:O(nlogn)//for sorting vector
+sc:O(1)
+pseudo code:
+1.sort vector
+2.traverse sorted vector
+3.if any two consecutive elements are same just return it
+4.if consecutive elements are not same simply do i++ and j++;
+*/
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+       sort(nums.begin(),nums.end());
+        int i=0,j=1;
+        while(j<nums.size()){
+            if(nums[i]!=nums[j]){
+                i++;
+                j++;
+            }
+            else{
+                return nums[i];
+            }
+        }
+        return 0;
     }
 };
