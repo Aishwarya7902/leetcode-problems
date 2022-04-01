@@ -1,0 +1,45 @@
+problem:https://leetcode.com/problems/reverse-string/
+
+/*brute force
+tc:o(n)
+sc:o(n)
+pseudo code
+1.simply take an extra vector
+2.start traversing the given vector from the last index
+and push it in vector v
+3.copy vector v in the vector given in vector
+*/
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+       vector<char>v;
+        for(int j=s.size()-1;j>=0;j--){
+            v.push_back(s[j]);
+        }
+        s=v;
+    }
+};
+
+/*
+FURTHER OPTIMISTAION
+TC:O(N)
+SC:O(1)
+PSEUDO CODE:
+1.start a pointer at oth index,another pointer at last index
+2.swap s[i],s[j] until(i<j)
+*/
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        int i=0,j=s.size()-1;
+        while(i<j){
+            swap(s[i],s[j]);
+            i++;
+            j--;
+        }
+    }
+};
