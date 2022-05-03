@@ -38,3 +38,41 @@ public:
         
     }
 };
+
+/*OPTIMISATION
+tc:o(n)
+sc:o(1)
+two pointer
+for more details see video:https://youtu.be/H19zVrrpn5E
+(for more inghts see comment section of the video)
+*/
+
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        if(nums.size()<=0){
+            vector<int>v;
+            return v;
+        }
+        if(nums.size()==1){
+            vector<int>v;
+            v.push_back(nums[nums.size()-1]);
+            return v;
+        }
+        
+        int l=0;
+        int r=nums.size()-1;
+        while(l<r){
+            if(nums[l]%2>nums[r]%2){
+                int temp=nums[l];
+                nums[l]=nums[r];
+                nums[r]=temp;
+                l++;
+                r--;
+            }
+            if(nums[l]%2==0)l++;
+            if(nums[r]%2!=0)r--;
+        }
+        return nums;
+    }
+};
