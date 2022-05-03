@@ -1,0 +1,40 @@
+/*
+brute force
+tc:o(n)
+sc:o(n)
+pseudo code:
+1.if one elements is there in nums simply return
+2.call recursion for n-1 elements ,this becomes our hypothesis
+3.to handle the ans returned by the hypothesis is called induction step
+to handle induction what we do is 
+if last element of nums is odd simply insert it at the end of the ans vector
+if last element of nums is even simply insert it at the front of the ans vector
+
+
+#note :always pass ans vector by refrence while calling recursive function
+*/
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    vector<int> solve(vector<int>&nums,vector<int>&ans,int n){
+        if(n==1){
+            ans.push_back(nums[n-1]);
+            return ans;
+        }
+        solve(nums,ans,n-1);
+        if(nums[n-1]%2==0){
+            ans.insert(ans.begin(),nums[n-1]);
+        }
+        else{
+            ans.push_back(nums[n-1]);
+        }
+        return ans;
+    }
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        vector<int> ans;
+        return solve(nums,ans,nums.size());
+        
+        
+    }
+};
