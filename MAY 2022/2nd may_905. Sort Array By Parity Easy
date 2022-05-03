@@ -76,3 +76,32 @@ public:
         return nums;
     }
 };
+
+/*APPROACH 3....NOT AN OPTIMISATION BUT LEARNT SOMETHING*/
+class Solution {
+public:
+    
+    /*
+    THIS APPROACH I HAVE DONE ONLY IF LETS SAY IN INTERVIEW WE ARE NOT ALLOWED TO
+    MODIFY THE ORIGINAL VECTOR 
+    LINK FOR VIDEO:https://youtu.be/OErMw8qydq8
+    TC:O(N)
+    SC:O(N)
+    */
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        vector<int>ans(nums.size());
+        int start=0;
+        int end=ans.size()-1;
+        for(int x:nums){
+            if(x%2==0){
+                ans[start]=x;
+                start++;
+            }
+            else{
+                ans[end]=x;
+                end--;
+            }
+        }
+        return ans;
+    }
+};
