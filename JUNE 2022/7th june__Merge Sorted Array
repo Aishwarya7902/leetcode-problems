@@ -1,0 +1,43 @@
+
+/*
+brute force 
+intution:
+simply take an extra vector and put one pointer on start  of vector nums1(it will go till i < m)
+now put another iterator j on the begining of the second vector nums2 ( it will go till j<n)
+now whichever is smaller of the two of nums1[i] or nums2[j] .....push_back() it in the temp vector ....if we have finisthed either of the nums1 or nums2
+and we get out of the while loop ......just put that remaining vector in temp
+now in question since we  have been asked to put the ans in nums1 so simply copy temp in nums1
+tc:O(m+n)
+sc:O(m+n)
+
+*/
+#include<vector>
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        vector<int>temp;
+        int i=0,j=0;
+        while(i<m && j<n){
+            if(nums1[i]<=nums2[j]){
+                temp.push_back(nums1[i]);
+                i++;
+            }
+            else{
+                temp.push_back(nums2[j]);
+                j++;
+            }
+        }
+        while(i<m){
+            temp.push_back(nums1[i]);
+            i++;
+        }
+        while(j<n){
+            temp.push_back(nums2[j]);
+            j++;
+        }
+        for(int i=0;i<n+m;i++){
+            nums1[i]=temp[i];
+        }
+        
+    }
+};
