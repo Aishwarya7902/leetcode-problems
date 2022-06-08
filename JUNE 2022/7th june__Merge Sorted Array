@@ -62,21 +62,40 @@ OPTIMISATION
 using two pointer approach
 tc:o(m+n)
 sc:o(1)
-best explaination : https://youtu.be/C4oBXLr3zos
+best explaination :1. https://youtu.be/C4oBXLr3zos(algorithms made easy channel)
+                   2.https://youtu.be/P1Ic85RarKY( neetcode)
+                   3.https://youtu.be/FyzWXlSMNoI (fraz bhaiya)
 pseudo code
 set p1=m-1
     p2=n-1
     i=m+n-1
 compare values at p1 and p2 and put larger value at i
-lets say if 
-case 1 :     nums2[p2]>nums1[p1]
-            nums1[i]=nums2[p2]
-            i++;
-            p2++;
-case 2:      nums2[p2]==nums1[p1]
-            nums1[i]=nums2[p2]
-            i++;
-            p2++;           
+         
 */
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+      int p1=m-1,p2=n-1,i=m+n-1;
+        while( p1>=0 && p2>=0){
+            if(  nums1[p1]>nums2[p2]){
+                nums1[i--]=nums1[p1--];
+            }
+            else{
+                nums1[i--]=nums2[p2--];
+            }
+        }
+        //fill leftover elements of nums1 in nums1 ....though this step is not needed
+        while(p1>=0){
+            nums1[i--]=nums1[p1--];
+        }
+        
+        //fill leftover elements of nums2 in nums1
+        while(p2>=0){
+            nums1[i--]=nums2[p2--];
+        }
+        
+    }
+};
 
 
