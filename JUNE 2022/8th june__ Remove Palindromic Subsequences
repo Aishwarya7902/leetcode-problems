@@ -1,0 +1,61 @@
+/*
+my silly mistake....i thought this problem would be very very tough...but beleive me it is the easiest question i have encountered with
+🙂...........it was just a brain teaser like question
+*/
+
+/*
+
+
+Good to Know
+You need to know the difference between subarray and subsequence.
+Subarray need to be consecutive。
+Subsequence don't have to be consecutive.
+
+*******************
+Notice there are 2 very important information (hints):
+1. Remove the subsequence (not substring!). 
+2. The input string only consists of letters 'a' and 'b'!
+That means, there are 3 situations of this problem:
+
+
+Intuition
+If it's empty sting, return 0;
+If it's palindrome, return 1;
+Otherwise, we need at least 2 operation.
+
+
+Explanation
+since string contains only a and b therefore
+We can delete all characters 'a' in the 1st operation,
+and then all characters 'b' in the 2nd operation.
+So return 2 in this case
+
+
+Complexity
+Time O(N)
+Space O(N), also O(1) space checking palindrome is suuggested.
+
+*/
+
+class Solution {
+public:
+    bool isPalindrome(string s){
+        int n=s.size();
+        int i=0,j=n-1;
+        while(i<=j){
+            if(s[i]!=s[j]){
+                return false;
+                
+            }
+            i++;
+            j--;
+            
+        }
+        return true;
+    }
+    int removePalindromeSub(string s) {
+        if(s.size()==0)return 0;
+        if(isPalindrome(s))return 1;
+         return 2;
+    }
+};
