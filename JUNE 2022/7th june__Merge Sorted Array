@@ -52,3 +52,31 @@ sc:o(1)
 its a simply approach i hope u can code it
 
 */
+
+
+
+
+
+/*
+OPTIMISATION
+using two pointer approach
+tc:o(m+n)
+sc:o(1)
+best explaination : https://youtu.be/C4oBXLr3zos
+pseudo code
+set p1=m-1
+    p2=n-1
+    i=m+n-1
+compare values at p1 and p2 and put larger value at i
+lets say if 
+case 1 :     nums2[p2]>nums1[p1]
+            nums1[i]=nums2[p2]
+            i++;
+            p2++;
+case 2:      nums2[p2]==nums1[p1]
+            nums1[i]=nums2[p2]
+            i++;
+            p2++;           
+*/
+
+
