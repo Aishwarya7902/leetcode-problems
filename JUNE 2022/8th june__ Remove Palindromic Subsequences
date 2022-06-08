@@ -33,7 +33,7 @@ So return 2 in this case
 
 Complexity
 Time O(N)
-Space O(N), also O(1) space checking palindrome is suuggested.
+Space O(1) 
 
 */
 
