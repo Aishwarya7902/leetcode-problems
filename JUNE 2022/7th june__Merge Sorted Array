@@ -41,3 +41,14 @@ public:
         
     }
 };
+
+/*
+method 2: 
+store elements of nums2 in nums1  starting from index m to m+n-1 
+and simply sort it
+tc: klogk where k=m+n
+sc:o(1)
+
+its a simply approach i hope u can code it
+
+*/
