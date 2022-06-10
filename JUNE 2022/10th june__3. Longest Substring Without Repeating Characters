@@ -1,0 +1,43 @@
+/*brute force
+tc:O(N*3)
+sc:O(N)
+
+
+pseudo code
+so the  idea here is to go in each substring and check if it contains all unique characters and if it contains all unique characters then update maxi with max(maxi,len)  otherwise discard that substring
+1.first take the first character of the string and check all the possible substrings that can be formed starting with s[0]........similarly repeat for s[1],  s[2] etc.
+2.now how to check if that substring contains all unique characters....for this take a map and store every character which u  iterate through 
+3.now lets do it...whenever u enter the first for loop  create a map...take a len=0 variable to store current length of the substring.....u might think why we are creating a new map and len every time we enter the for first loop ...this is so because when u enter a new loop u are dealing with a brand new substring starting with s[i] ...and to maintain if the character already occured or not we are maintaining a map and length of substring is stored in len
+4.if the character at s[j] already occurs in map thenit means ki substring contains repeating character...just discard this substring and break out of the loop and update lenth with substring with one smaller j kyuki  ( j-1)  tak to condition satisfy hui hi thi.
+5.if s[j] does not already occur in map then store it in map and do len++
+6.finally every time u go out of the second for loop just update maxi with max(maxi,len)
+7.finally coming out of both loops just return maxi.
+*/
+
+#include<map>
+class Solution {
+public:
+    int maxi=INT_MIN;
+    int len;
+    int lengthOfLongestSubstring(string s) {
+        
+      if(s.size()==0){
+          return 0;
+      }  
+     for(int i=0;i<s.size();i++){
+         unordered_map<char,int>mp;
+         len=0;
+         for(int j=i;j<s.size();j++){
+             if(mp.find(s[j])!=mp.end()){
+                 break;
+             }
+             else{
+                 mp[s[j]]++;
+                 len++;
+             }
+         }
+         maxi=max(maxi,len);
+     }
+        return maxi;
+    }
+};
