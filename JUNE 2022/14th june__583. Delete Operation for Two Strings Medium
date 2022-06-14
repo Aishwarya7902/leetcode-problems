@@ -1,0 +1,39 @@
+problem:https://leetcode.com/problems/delete-operation-for-two-strings/
+
+/*intution:
+the intution behind the question is simple ....as the question says minimum no of deletions
+to make str1 and str2 equal....for min deletions we will have to see what maximum common they can have ......and whatever is the size of str1 we can delete that common part from it ..and similar operation can be done in str2 as well.
+ 
+ now can we find what maximim is common between these two strings....its can be easily found by longest common subsequence of given two strings.
+ so the brute force as well as the optimization will directly depend on the function of longest common subsequence...which can be done by
+ 1.brute force-> simple recursion(gives tle)
+ 2.memoization (might give tle)
+ 3.bottom up (most optimised)
+ */
+ 
+ /*using simple recursion
+ time complexity : O(2^(m+n))
+ Here, as for each node, we will be making three recursive calls, so the time complexity will be exponential and is represented as O(2m+n), where m and n are the lengths of both strings. If we carefully observe the above code, we can skip the third recursive call as the two will cover it.
+ */
+ 
+ int lcs(string &word1, string &word2,int m,int n){
+        if(m==0 || n==0){
+            return 0;
+        }
+        if(word1[m-1]==word2[n-1]){
+            return 1+lcs(word1,word2,m-1,n-1);
+        }
+        else
+        return max(lcs(word1,word2,m,n-1),lcs(word1,word2,m-1,n));
+    }
+    int minDistance(string word1, string word2) {
+       int m=word1.size();
+       int n=word2.size();
+        int common=lcs(word1,word2,m,n);
+        return (m-common)+(n-common);
+    }
+    
+    /*using memoization
+    tc:o(mn)
+    sc:o(mn)
+    */
