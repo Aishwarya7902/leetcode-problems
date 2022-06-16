@@ -1,6 +1,6 @@
 problem:https://leetcode.com/problems/longest-palindromic-substring/
 /*
-brute force (got tle 😫)
+brute force (180 / 180 test cases passed, but took too long......got tle 😫)
 tc:O(n*3)
 sc:O(n)
 pseudo code: the basic idea i used here is 
