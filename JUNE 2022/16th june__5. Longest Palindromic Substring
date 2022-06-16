@@ -1,1 +1,46 @@
 problem:https://leetcode.com/problems/longest-palindromic-substring/
+/*
+brute force (got tle 😫)
+tc:O(n*3)
+sc:O(n)
+pseudo code: the basic idea i used here is 
+take a final ans string and update it with longest palindromic string .
+1.generate all substrings
+2.check if it is a palindrome
+3.if yes ..then if its length is grater than ans string ...........then update ans string with this current substring.
+at last ans string
+*/
+
+class Solution {
+public:
+    bool IsPalindrome(string& s,int i,int j){
+        while(i<j){
+            if(s[i]!=s[j]){
+                return false;
+            }
+            else{
+                i++;
+                j--;
+            }
+        }
+        return true;
+    }
+    string longestPalindrome(string s) {
+       if(s.size()==1){
+           return s;
+       } 
+        string ans="";
+        for(int i=0;i<s.size();i++){
+            string curr;
+            for(int j=i;j<s.size();j++){
+                curr.push_back(s[j]);
+                if(IsPalindrome(s,i,j)){
+                    if(ans.size()<j-i+1){
+                        ans=curr;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};
