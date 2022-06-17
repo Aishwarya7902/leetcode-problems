@@ -3,8 +3,8 @@ video :https://youtu.be/2Gh5WPjAgJk
 blog:https://leetcode.com/problems/binary-tree-cameras/discuss/211180/JavaC%2B%2BPython-Greedy-DFS
 
 /*
-tc:O(N)
-sc:O(1)
+tc:O(N) since we are traversing every node
+sc:O(H) here H stand for height ...since we are using recursion stack for dfs call
 
 **ALGORITHM WALK__THROUGH**
 we will maintain three states ....
