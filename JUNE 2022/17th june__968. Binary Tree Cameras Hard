@@ -1,0 +1,76 @@
+problem:https://leetcode.com/problems/binary-tree-cameras/
+video :https://youtu.be/2Gh5WPjAgJk
+blog:https://leetcode.com/problems/binary-tree-cameras/discuss/211180/JavaC%2B%2BPython-Greedy-DFS
+
+/*
+tc:O(N)
+sc:O(1)
+
+**ALGORITHM WALK__THROUGH**
+we will maintain three states ....
+0->for uncovered
+1->for covered
+2->for placing cameras
+
+1. 
+if(root==NULL){
+            return 0;
+        }
+				agar root hi null hai to koi camera lagane ki jarurat hi ni.
+				
+2.int ans=dfs(root); by this line we are going deep down the leaf node....dekho leaf pe hi max nodes hote hain so uspe camera ni lagayenge....uske ek level upar lagayenge ..thats why we are going deep down in search of leaf's parent.
+
+3.return ans==0? cam+1:cam; this line means ki agr root ka state 0 hai means it is not covered hence cam+1 coz root pe ek camera lagayenge to cover it
+other wise if state of root is 1 means it is covered or 2 means it already has a camera then we simply return number of cameras.
+
+4.now lets talk about dfs function
+
+5.int dfs(TreeNode* node){
+        if(node==NULL)return 1;
+    }
+		this line means we are at the child of leaf node ....so we can consider it as covered so return 1
+		
+6.int left=dfs(node->left); find the state of leftchild
+7.int right=dfs(node->right); find state of right child
+
+8.if(left==0 || right==0){
+            cam++;
+            return 2;
+        }
+				this means ki dono me se koi bhi child cover ni hua hai...so we can place a camera at this parent node,and do cam++..coz we are adding one camera ...and since we added a camera so its state becomes 2.
+				
+9.else if(left==2 || right==2)return 1;
+this line means that there is already a camera placed at either of the child nodes....so the parent at the current node can be covered by the child's camera so now the state of the current node becomes covered so we return 1.
+
+10.else
+            return 0;
+	at last if we neither placed a camera nor covered the node it means we haven't covered it......hence we return 0.
+  
+  */
+  
+  
+  
+  class Solution {
+public:
+    int cam=0;
+    int dfs(TreeNode* node){
+        if(node==NULL)return 1;
+        int left=dfs(node->left);
+        int right=dfs(node->right);
+        if(left==0 || right==0){
+            cam++;
+            return 2;
+        }
+        else if(left==2 || right==2)return 1;
+        else
+            return 0;
+    }
+    int minCameraCover(TreeNode* root) {
+        if(root==NULL){
+            return 0;
+        }
+        int ans=dfs(root);
+        return ans==0? cam+1:cam;
+    }
+};
+
