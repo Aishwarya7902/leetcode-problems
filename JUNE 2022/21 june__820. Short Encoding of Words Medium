@@ -3,7 +3,7 @@ problem:https://leetcode.com/problems/short-encoding-of-words/
 /**brute force*
 
 Complexity
-O(NK^2) for time and 'O(NK)' for space.
+O(words.length) * O(length of the longest word ^ 2) for time and 'O(words.length * length of the longest word)' for space.
 It is really kind of K with K <= 7, almost ignorable.
 I should have suggested for bigger 'K' cases.
 I believe it will take more time for most people to solve this problem if we have a big K.
