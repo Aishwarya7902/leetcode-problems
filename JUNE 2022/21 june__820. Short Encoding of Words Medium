@@ -1,0 +1,60 @@
+problem:https://leetcode.com/problems/short-encoding-of-words/
+
+/**brute force*
+
+Complexity
+O(NK^2) for time and 'O(NK)' for space.
+It is really kind of K with K <= 7, almost ignorable.
+I should have suggested for bigger 'K' cases.
+I believe it will take more time for most people to solve this problem if we have a big K.
+
+
+**ALGORITHM WALKTHROUGH**
+1.unordered_set<string>uniqueSet(words.begin(),words.end()); this will generate a set 
+(set contains unique elements)  from vector strings.
+
+2.for(string s:uniqueSet ){
+           for(int i=1;i<s.size();++i){
+               uniqueSet.erase(s.substr(i));
+           }
+       }
+			 outer for loop traverses in the set whose each element is a string
+			 inner for generates all possible substrings of given word and if it is present in set 
+			 we will delete it from set as the larger word will cover it...eg string s="time"can cover the           string p="me"  ....so we will delete string me from set ...in this way all those strings will be removed from set which can be covered by a larger string.
+			 
+			 **note: second for loop started from 1 coz if we had started from 0 then for string time it will also had removed substring time..but we dont have to do this**
+			 
+		now we are only left with larger strings which can cover all available smaller strings in words and all of them will be unique.
+		
+		3. for(string s:uniqueSet){
+            minLen+=s.size()+1;
+        }
+				by doing this we get size of each string now available  ...we did +1 coz we have to add    '#'  too for each string.
+				
+				eg .lets suppose now set becomes=["time" , "bell"]
+				now we have to make a string having this set and '#' inserted between each string
+				now the ans which we have to return becomes like:
+				["time#bell#]"  ....it's length is 10...so we return 10 from here.
+				
+				note: instead of making ans string...we traversed the set after all operations are done
+				and we added size of each string of the set +1 (1 for #) in the res variable.
+        
+        */
+        
+#include<set>
+class Solution {
+public:
+    int minimumLengthEncoding(vector<string>& words) {
+       unordered_set<string>uniqueSet(words.begin(),words.end());
+       for(string s:uniqueSet ){
+           for(int i=1;i<s.size();++i){
+               uniqueSet.erase(s.substr(i));
+           }
+       }
+        int minLen=0;
+        for(string s:uniqueSet){
+            minLen+=s.size()+1;
+        }
+        return minLen;
+    }
+};
