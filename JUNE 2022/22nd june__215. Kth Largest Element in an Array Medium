@@ -1,0 +1,23 @@
+problem:https://leetcode.com/problems/kth-largest-element-in-an-array/
+blog:
+video:
+
+/*BRUTE FORCE
+TC:O(nlogn)
+sc:O(1)
+**ALGORITH WALKTHROUGH**
+1.sort the vector in ascending order
+2.after sorting nums[n-1] represents the last element of nums that means it is the largest element of nums
+3.nums[n-2]  represents the second largest element
+4.nums[n-k] represent th kth largest element ...so return it.
+
+*/
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());
+        return nums[nums.size()-k];
+    }
+};
