@@ -21,3 +21,53 @@ public:
         return nums[nums.size()-k];
     }
 };
+
+
+/**MAX  HEAP APPROACH*
+**ALGORITH WALKTHROUGH**
+tc: O(klogk) // sorting in size k
+1.(Min heap) Priority queue of size k
+2.define a priority queue of size k with min queue
+3.keep on adding elements in a queue. At any point if size becomes greater than k,remove elements from it.
+
+# LEARNINGS IN PRIORITY QUEUE APPROACH
+1.to include priority queue in header file
+#include<queue> 
+
+2.to declare a min priority queue(pq)
+priority_queue<int,vector<int>,greater<int>> pq;
+
+3.to insert element in a pq
+pq.push(x);
+
+4.to find size of pq
+pq.size()
+
+5.to pop the top most element(in min heap top most is the min of pq)
+pq.pop();
+
+6.to find top most element
+pq.top();
+
+ab sawal ye hai ki top element se kth max element kaise aaya
+to dekh mere bhai....humne k size ka min heap design kiya hai
+to array ke elements ko ek ek kar ke daloge aur jaise hi size k se jyada hua to ek ek kr ke min element jo top par honge wo to aap pop kar
+doge and at last we will be left with only k elemnts that means its top will be the kth max element
+
+*/
+
+#include<queue> 
+class Solution{
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int,vector<int>,greater<int>> pq;
+        for(int x:nums){
+            pq.push(x);
+            if(pq.size()>k){
+                pq.pop();
+            }
+            
+        }
+        return pq.top();
+    }
+};
