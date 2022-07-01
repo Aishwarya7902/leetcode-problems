@@ -1,0 +1,36 @@
+pronlem:https://leetcode.com/problems/maximum-units-on-a-truck/
+best explaination:https://www.linkedin.com/posts/mayank-singh-1004981a4_maximum-units-on-a-truck-activity-6948466856114425857-Y0WS?utm_source=linkedin_share&utm_medium=member_desktop_web
+/* brute force
+tc:O(nlogn) //for sorting
+
+sc:O(1)
+ pseudo code:
+ 1.sort the array in increasing order of the no of units in each box
+ 2. if particular boxtype has no of boxes<=truscksize then pick all its units...move on to the next box untill ur trucksize becomes zero
+ 3. this is a greedy approach
+ 4.for better explaination visist:https://www.linkedin.com/posts/mayank-singh-1004981a4_maximum-units-on-a-truck-activity-6948466856114425857-Y0WS?utm_source=linkedin_share&utm_medium=member_desktop_web
+ */
+ 
+ class Solution {
+public:
+   static bool comp(vector<int>&a,vector<int>&b){
+        return a[1]>b[1];
+    }
+    int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
+        sort(boxTypes.begin(),boxTypes.end(),comp);
+        int Units=0;
+        for(auto box:boxTypes){
+            
+            if(truckSize>=box[0]){
+                Units+=box[0]*box[1];
+                truckSize-=box[0];
+
+            }
+            else{
+                Units+=truckSize*box[1];
+                truckSize=0;
+            }
+        }
+        return Units;
+    }
+};
