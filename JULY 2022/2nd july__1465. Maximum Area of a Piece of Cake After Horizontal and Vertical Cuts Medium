@@ -1,0 +1,30 @@
+problem:https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/
+
+/*brute force
+tc:
+sc:
+see video:https://youtu.be/F8EiRRxyyjU
+*/
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {
+       horizontalCuts.push_back(0);
+        horizontalCuts.push_back(h);
+        verticalCuts.push_back(0);
+        verticalCuts.push_back(w);
+        sort(horizontalCuts.begin(),horizontalCuts.end());
+        sort(verticalCuts.begin(),verticalCuts.end());
+        int l=0,b=0;
+        for(int i=1;i<horizontalCuts.size();i++){
+            l=max(l,(horizontalCuts[i]-horizontalCuts[i-1]));
+        }
+        for(int i=1;i<verticalCuts.size();i++){
+            b=max(b,verticalCuts[i]-verticalCuts[i-1]);
+        }
+        
+      return (1LL*l*b)%1000000007;
+        
+    }
+};
