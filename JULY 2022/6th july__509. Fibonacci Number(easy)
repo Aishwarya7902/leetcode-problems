@@ -1,0 +1,77 @@
+problem:https://leetcode.com/problems/fibonacci-number/
+
+/*brute force
+tc:O(n^2)
+Extra Space: O(n) if we consider the function call stack size, otherwise O(1).
+pseudo code
+1.just return fib of previous two numbers
+2.base case is fib(0)=0 and fib(1)=1
+3.call fib(n-1) and fib(n-2)
+4.return abouve step
+*/
+
+ int fib(int n) {
+        //base  case
+        if(n==0)return 0;
+        if(n==1)return 1;
+        //hypothesis
+        int fib1=fib(n-1);
+        int fib2=fib(n-2);
+        
+        //induction
+        return fib1+fib2;
+    }
+    
+    /*using tabulation
+    
+    tc:O(n)
+    sc:O(n)
+    pseudo code
+    1.Declare an array to store Fibonacci numbers
+    2. 0th and 1st number of the series are 0 and 1
+    3.Add the previous 2 numbers in the series and store it
+    
+    */
+    
+    int fib(int n) {
+        if(n<=1)return n;
+      int *dp=new int[n+1];
+        dp[0]=0;
+        dp[1]=1;
+        for(int i=2;i<=n;i++){
+            dp[i]=dp[i-1]+dp[i-2];
+        }
+        return dp[n];
+    }
+    
+    
+    
+   /*using memoization
+    see dp is nothing but inhanced recursion
+    and it says why to calculate the same thing again and again
+    ......why dont u store whatever value u have calcutated somewhere
+    so that next time if encounter it.... u can reuse ur previously calculated value
+    so that u don't have to waste ur time again🙂
+    feel❤ ...fibonacci no feel kar lo bhai
+    
+    tc:
+    sc:
+    pseudo code:
+    1.base case is if n<=1 return n ...i.e if n==0 retutn 0 and if n==1 return 1
+    2.make a dp array and initialize it with -1
+    3.if u have to find fibinacci of any no first check if we have calculated it previously...if yes       return it ...otherwise calculate the fibonacci of that no using recursion and store it in dp array
+    */
+    
+    
+    
+    int helper(int n,vector<int>&dp) {
+       if(n<=1)return n; 
+        if(dp[n]!=-1)return dp[n];
+        int res=helper(n-1,dp)+helper(n-2,dp);
+        return dp[n]=res;
+       
+    }
+    int fib(int n){
+        vector<int>dp(n+1,-1);
+        return helper(n,dp);
+    }
