@@ -1,0 +1,49 @@
+problem:https://leetcode.com/problems/binary-tree-level-order-traversal/
+
+/*TC:O(N)
+  SC:O(N)
+  */
+
+
+#include<vector>
+#include<queue>
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        //agar root null hai to simple ek empty 2d vector return karaa do
+        if(root==NULL)
+        {
+            vector<vector<int>>ans;
+        return ans;
+        }
+        //make a 2d vector to store ans
+     vector<vector<int>>ans;
+        //make a temporary vector to store all elements at one level
+     vector<int>v;
+        //make a queue
+     queue<TreeNode*>q;
+        //push 
+     q.push(root);
+     q.push(NULL);
+        while(!q.empty()){
+            TreeNode* front=q.front();
+            q.pop();
+            if(front==NULL){ //this line simply means we have finished one level...null will help to get into the next level...as soon as we finish one level just store all elements of that level in a  2d vector
+               ans.push_back(v);
+               v.clear(); //clear the previous 1d vector so that we can store next level in it
+                if(!q.empty()){ // null ke front hone ke bad if queue is not empty simply means us level ke sare nodes ne apne apne child ko queue me push kiya hoga (provided they have a child)....so in order to indicate that next level finished we insert a NULL in line39
+                    q.push(NULL);
+                }
+            }
+            else{
+              v.push_back(front->val); //if fornt is not null it we are currently running at a particular level ...so store all elements of that level in some 1d vector
+                if(front->left)
+                q.push(front->left); //push left child to queue if it is present
+                if(front->right)
+                q.push(front->right); //push right child to queue if it is present
+                
+            }
+        }
+        return ans;
+    }
+};
