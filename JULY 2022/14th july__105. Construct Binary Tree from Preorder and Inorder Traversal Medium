@@ -1,0 +1,35 @@
+problem:https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+
+/*
+tc:O(n) 
+sc:O(n)
+video:https://youtu.be/IH9jN6VdMOc
+*/
+class Solution {
+    int idx=0;
+    unordered_map<int,int>m;
+    private:
+    TreeNode* solve(vector<int>& preorder, vector<int>& inorder,int lb,int up){
+        if(lb>up)
+            return NULL;
+        TreeNode* curr=new TreeNode(preorder[idx++]);
+        if(lb==up)
+            return curr;
+        int mid=m[curr->val];
+        curr->left=solve(preorder,inorder,lb,mid-1);
+        curr->right=solve(preorder,inorder,mid+1,up);
+        return curr;
+    }
+    
+    public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+      idx=0;
+      m.clear();
+      for(int i=0;i<inorder.size();i++){
+          m[inorder[i]]=i;
+      }
+        TreeNode* root=solve(preorder,inorder,0,preorder.size()-1);
+        return root;
+        
+    }
+};
