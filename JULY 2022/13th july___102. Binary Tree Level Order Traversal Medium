@@ -47,3 +47,37 @@ public:
         return ans;
     }
 };
+
+
+/*METHOD 2:
+TC:O(N)
+SC:O(N)
+VIDEO EXPLAINATION:https://youtu.be/zuQ6TGf31N0
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        
+        vector<vector<int>>ans;
+        vector<int>v;
+        if(root==NULL)
+            return ans;
+        queue<TreeNode*>q;
+        q.push(root);
+        while(!q.empty()){
+            int n=q.size();
+            while(n--){
+                TreeNode* front=q.front();
+                q.pop();
+                v.push_back(front->val);
+                if(front->left)
+                    q.push(front->left);
+                if(front->right)
+                    q.push(front->right);
+            }
+            ans.push_back(v);
+            v.clear();
+        }
+        return ans;
+    }
+};
