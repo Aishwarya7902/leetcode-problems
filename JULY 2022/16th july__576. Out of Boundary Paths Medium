@@ -1,0 +1,40 @@
+PROBLEM:https://leetcode.com/problems/out-of-boundary-paths/
+VIDEO EXPLAINATION:https://www.youtube.com/watch?v=ZMyWkWu15JE
+
+/*
+
+tc: O(m*n*maxMove)
+sc: O(m*n*maxMove)
+
+*/
+
+class Solution {
+   private:
+    int memo[51][51][51];
+    int mod=1000000007;
+    long helper(int m,int n,int maxMove,int row,int col){
+        if(row<0 || row>=m ||  col<0 || col>=n){
+            return 1;
+        }
+        if(maxMove<=0)
+            return 0;
+        if(memo[row][col][maxMove]!=-1)
+            return memo[row][col][maxMove];
+        long ans=0;
+        //left
+        ans+=helper(m,n,maxMove-1,row,col-1);
+        //right
+        ans+=helper(m,n,maxMove-1,row,col+1);
+        //up
+        ans+=helper(m,n,maxMove-1,row-1,col);
+        //down
+        ans+=helper(m,n,maxMove-1,row+1,col);
+        return memo[row][col][maxMove]=ans%mod;
+    }
+public:
+    int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+      memset(memo,-1,sizeof(memo));
+        return (helper(m,n,maxMove,startRow,startColumn))%mod;
+       
+    }
+};
