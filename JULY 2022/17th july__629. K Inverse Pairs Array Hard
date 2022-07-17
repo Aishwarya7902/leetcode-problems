@@ -9,6 +9,7 @@ TC : O(N*N!) here N! coz we are generating permutation and N coz we are running 
             }
         }
 SC:
+O(n!) for storing all permutations in ans
 O(n*n) -->vector<vector<int>>ans;
  O(n) --> vector<int>v;
   O(n)-->  int freq[n];
