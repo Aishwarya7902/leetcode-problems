@@ -1,0 +1,14 @@
+problem:https://leetcode.com/problems/k-inverse-pairs-array/
+
+/*BRUTE FORCE
+TC : O(N*N!) here N! coz we are generating permutation and N coz we are running a loop + O(N*N *N) N*N coz we are checking for HasKInverse which has two for loops
+     and N coz here we are traversing in the ans 2d vector
+     for(int i=0;i<ans.size();i++){
+            if(HasKInverse(ans[i],k)){
+                cnt++;
+            }
+        }
+SC:
+O(n*n) -->vector<vector<int>>ans;
+ O(n) --> vector<int>v;
+  O(n)-->  int freq[n];
