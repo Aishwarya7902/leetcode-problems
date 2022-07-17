@@ -1,6 +1,6 @@
 problem:https://leetcode.com/problems/k-inverse-pairs-array/
 
-/*BRUTE FORCE
+/*BRUTE FORCE  (GETTING TLE)
 TC : O(N*N!) here N! coz we are generating permutation and N coz we are running a loop + O(N*N *N) N*N coz we are checking for HasKInverse which has two for loops
      and N coz here we are traversing in the ans 2d vector
      for(int i=0;i<ans.size();i++){
@@ -12,3 +12,74 @@ SC:
 O(n*n) -->vector<vector<int>>ans;
  O(n) --> vector<int>v;
   O(n)-->  int freq[n];
+  
+  PSEUDO CODE: the approach is pretty straight forward
+  1.store numbers from 1 to n in a vector named given 
+  2.store all its permutation in some 2d vector named ans
+  3.traverse every vector of the given 2d vector and pass this along with k to a function HasKInverse which will check if the given vector has exactly k inverse pairs or 
+  not....if it has exactly k inverse pairs increase count++ and finally return count% mod ....since asked in the question (Since the answer can be huge,
+  return it modulo 109 + 7)
+  
+  */
+  
+class Solution {
+private:
+    int mod=1e9+7;
+    void helper(vector<int> &given,vector<vector<int>> &ans,vector<int> &v,int freq[]){
+        if(v.size()==given.size()){
+            ans.push_back(v);
+            return;
+        }
+        for(int i=0;i<given.size();i++){
+            if(!freq[i]){
+                freq[i]=1;
+                v.push_back(given[i]);
+                helper(given,ans,v,freq);
+                freq[i]=0;
+                v.pop_back();
+                    
+            }
+        }
+    }
+    bool HasKInverse(vector<int> &a,int k){
+        int count=0;
+        for(int i=0;i<a.size()-1;i++){
+            for(int j=i+1;j<a.size();j++){
+                if(a[i]>a[j]){
+                    count++;
+                    if(count>k)
+                        return false;
+                }
+            }
+        }
+        if(count==k)return true;
+        return false;
+    }
+public:
+    int kInversePairs(int n, int k) {
+     if(k==0)
+         return 1;
+        vector<int>given;
+        for(int i=1;i<=n;i++){
+            given.push_back(i);
+        }
+        vector<vector<int>>ans;
+        vector<int>v;
+        int freq[n];
+        for(int i=0;i<n;i++){
+            freq[i]=0;
+        }
+        helper(given,ans,v,freq);
+        int cnt=0;
+        for(int i=0;i<ans.size();i++){
+            if(HasKInverse(ans[i],k)){
+                cnt++;
+            }
+        }
+        return cnt%mod;
+        
+        
+    }
+};
+
+ 
