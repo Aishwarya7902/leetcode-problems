@@ -1,4 +1,5 @@
 problem:https://leetcode.com/problems/k-inverse-pairs-array/
+HELPFUL BLOGS: 1.https://leetcode.com/problems/k-inverse-pairs-array/discuss/846076/C%2B%2B-4-solutions-with-picture
 
 /*BRUTE FORCE  (GETTING TLE)
 TC : O(N*N!) here N! coz we are generating permutation and N coz we are running a loop + O(N*N *N) N*N coz we are checking for HasKInverse which has two for loops
