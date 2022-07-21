@@ -62,3 +62,55 @@ public:
         
     }
 };
+
+
+/*APPROACH 2 : ACCEPTED
+TC:O(N)
+SC:O(1)
+for more clarity:  https://www.youtube.com/watch?v=tHKp8UuOkm4&t=284s
+*/
+
+class Solution {
+private:
+   ListNode* reverse(ListNode* head)
+    {
+        if(head==NULL || head->next==NULL ){
+            return head;
+        }
+        ListNode* temp=head->next;
+        ListNode* currAns=reverse(temp);
+        head->next=NULL;
+        temp->next=head;
+        return currAns;
+        
+    }
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+       ListNode *prev=NULL,*curr=head;
+        int count=1;
+        while(count!=left){
+            prev=curr;
+            curr=curr->next;
+            count++;
+        }
+        ListNode* start=curr;
+        while(count!=right){
+            curr=curr->next;
+            count++;
+        }
+        ListNode* rest=curr->next;
+        curr->next=NULL;
+        ListNode* newHead=reverse(start);
+        if(prev)
+            prev->next=newHead;
+        curr=newHead;
+        while(curr->next){
+            curr=curr->next;
+        }
+        curr->next=rest;
+        if(left==1)
+            return newHead;
+        return head;
+    }
+};
+
