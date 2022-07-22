@@ -45,3 +45,37 @@ public:
         return node1.next;
     }
 };
+
+/*approach 2: same above code but a bit faster coz we handled memory leak
+Runtime: 7 ms, faster than 73.71% of C++ online submissions for Partition List.
+Memory Usage: 10.3 MB, less than 32.53% of C++ online submissions for Partition List.
+
+TC:O(N)
+SC:O(1)
+
+*/
+
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+      ListNode *node1= new ListNode (0) ;
+      ListNode *node2= new ListNode (0) ;
+
+      ListNode *p1=node1,*p2=node2; 
+        while(head){
+            if(head->val<x){
+                p1=p1->next=head;
+            }
+            else{
+                p2=p2->next=head;
+            }
+            head=head->next;
+        }
+        p2->next=NULL;
+        p1->next=node2->next;
+        head=node1->next;
+        delete node1,node2;
+        return head;
+    }
+};
+
