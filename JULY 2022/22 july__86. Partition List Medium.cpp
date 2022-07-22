@@ -33,10 +33,12 @@ public:
       ListNode *p1=&node1,*p2=&node2; 
         while(head){
             if(head->val<x){
-                p1=p1->next=head;
+                p1->next=head;
+                p1=p1->next;
             }
             else{
-                p2=p2->next=head;
+                p2->next=head;
+                p2=p2->next;
             }
             head=head->next;
         }
@@ -52,7 +54,7 @@ Memory Usage: 10.3 MB, less than 32.53% of C++ online submissions for Partition 
 
 TC:O(N)
 SC:O(1)
-
+BEAUTIFUL EXPLAINATION __VIDEO:  https://www.youtube.com/watch?v=b4FeEwAGDtU
 */
 
 class Solution {
@@ -64,10 +66,12 @@ public:
       ListNode *p1=node1,*p2=node2; 
         while(head){
             if(head->val<x){
-                p1=p1->next=head;
+                p1->next=head;
+                p1=p1->next;
             }
             else{
-                p2=p2->next=head;
+                p2->next=head;
+                p2=p2->next;
             }
             head=head->next;
         }
