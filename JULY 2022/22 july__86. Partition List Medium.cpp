@@ -1,7 +1,11 @@
-*************************MY WRONG ASSUMPTION FRO THE QUESTION**************
+/*
+*************************MY WRONG ASSUMPTION FOR THE QUESTION**************
 at first glance i thought we have to move all no less thn x behind x and greater than or equal to x beyond x...which was totally wrong
 AS STATED IN THE QUESTION :   You should preserve the original relative order of the nodes in each of the two partitions.
     HENCE original relative order of the nodes MUST BE MAINTAINED👀
+    */
+
+
 
 /*
 APPROACH 1 Runtime: 11 ms, faster than 39.33% of C++ online submissions for Partition List.
