@@ -31,6 +31,7 @@ pseudo code:
             if(matrix[i][mid]==target){
                 return true;
             }
+               
             if(matrix[i][mid]<target){
                 low=mid+1;
             }
