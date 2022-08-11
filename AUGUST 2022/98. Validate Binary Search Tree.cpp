@@ -3,7 +3,7 @@ PROBLEM: https://leetcode.com/problems/validate-binary-search-tree/
 VIDEO:https://www.youtube.com/watch?v=f-sj7I5oXEI (STRIVER BHAIYA)
 TC:O(N)
   SC:O(1)....IT WILL TAKE O(N) AUXILIARY STACK SPACE
-  
+  Note we use LONG_MIN and LONG_MAX to handle edge cases like [INT_MAX].
   */
 #include<bits/stdc++.h>
 class Solution {
