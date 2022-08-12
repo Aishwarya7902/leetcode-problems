@@ -52,3 +52,31 @@ public:
     return root;
     }
 };
+
+/*APPROACH 3: iterative version of approach 2
+ITERATIVELY
+TC:O(HEIGHT)
+SC:O(1)
+*/
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        TreeNode* curr=root;
+        while(true){
+        if(curr->val<p->val && curr->val <q->val){
+            curr=curr->right;
+        }
+           else if(curr->val>p->val && curr->val >q->val){
+            curr=curr->left;
+        }
+            else
+                break;
+            
+            
+            }
+        return curr;
+    }
+};
+
+
