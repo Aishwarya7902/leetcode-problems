@@ -2,7 +2,7 @@ PROBLEM: https://leetcode.com/problems/power-of-three/
 
 /*APPROACH 1
 USING LOOPS
-TC: O(N)
+TC: O(log3(N))
 SC: O(1)
 VIDEO:  https://www.youtube.com/watch?v=GNb8vSyw-WE
 */
