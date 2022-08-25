@@ -30,4 +30,47 @@ public:
     }
 };
 
+/*approach 2:
+tc: O(size of ransomNote)
+sc: O(size of magazine)
+video:
+blog: https://leetcode.com/problems/ransom-note/discuss/2477028/C%2B%2Boror-2-approach-oror-Hashmap-andand-vector-oror-Optimise-space-and-TC
+pseudo code:
+*/
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+      
+      unordered_map<char,int>mp;
+        for(auto x:magazine){
+            mp[x]++;
+        }
+        for(int i=0;i<ransomNote.size();i++){
+            if(mp[ransomNote[i]]==0)return false;
+            mp[ransomNote[i]]--;//this means ki humne us character ko use kar liya to uske count ko ek kam kar do
+        }
+     return true;
+        
+    }
+};
+
+/*approach 3
+tc: O(m+n)
+sc: O(1) since size is 26 therefore can be assumed to be constant
+*/
+class Solution {
+public:
+    bool canConstruct(string r, string m) {
+      vector<int>mp(26,0);
+        for(auto x: m){
+            mp[x-'a']++;
+        }
+        for(int i=0;i<r.size();i++){
+            if(mp[r[i]-'a']==0)return false;
+            mp[r[i]-'a']--;
+        }
+        return true;
+    }
+};
+
 
