@@ -31,7 +31,9 @@ public:
 };
 
 /*approach 2:
-tc: O(size of ransomNote)
+tc: time is O(m + n) where m and n are the length of both strings 
+...time is O(m+n) because we are iterating over both the string one time only
+
 sc: O(size of magazine)
 video:
 blog: https://leetcode.com/problems/ransom-note/discuss/2477028/C%2B%2Boror-2-approach-oror-Hashmap-andand-vector-oror-Optimise-space-and-TC
@@ -55,7 +57,8 @@ public:
 };
 
 /*approach 3
-tc: O(m+n)
+time is O(m + n) where m and n are the length of both strings 
+....time is O(m+n) because we are iterating over both the string one time only
 sc: O(1) since size is 26 therefore can be assumed to be constant
 */
 class Solution {
@@ -72,5 +75,6 @@ public:
         return true;
     }
 };
+
 
 
