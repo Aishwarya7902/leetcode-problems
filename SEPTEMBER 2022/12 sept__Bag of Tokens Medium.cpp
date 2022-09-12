@@ -1,7 +1,7 @@
 PROBLEM:https: https://leetcode.com/problems/bag-of-tokens/
 
 /*MY INITIAL APPROACH (SOLVED ON MY OWN)
-TWO POINTER
+TWO POINTER +GREEDY
 VIDEO:https://www.youtube.com/watch?v=JAfE7TBdTeU
 //tc:o(nlogn) sorting +o(n)
 //sc:o(1)
