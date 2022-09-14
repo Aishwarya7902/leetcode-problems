@@ -8,6 +8,13 @@ pseudo code:
 2.for every possible path generate possible permutation....and for every permutation check if it is a palindrome or not....if any of the permutation of a 
 path is palindrome cnt++;
 3.return cnt;
+
+************************************  LEARNING**********************************************************************************
+1. how to generate all possible paths from root to leaf
+2.how to generate all possible permutations of a vector
+
+
+************************************************************************************************************************************
 */
 class Solution {
 public:
@@ -88,5 +95,42 @@ vector<vector<int>> Paths(TreeNode* root)
           if(isPalindrome(curr))cnt++;
       }
         return cnt;
+    }
+};
+
+/*
+APPROACH 2:
+VIDEO:  https://www.youtube.com/watch?v=cawfP2Uc_MU
+TC: O(n)
+SC: O(h) will be auxiliary space
+PSEUDO CODE:
+************************************  LEARNING**********************************************************************************
+1. agr kabhi tumhe palindrome check karna ho na to agr ek se jyada element ki odd frequency hai then wo palindrome kabhi ni hoga
+
+************************************************************************************************************************************
+*/
+
+class Solution {
+public:
+    void dfs(TreeNode* root,vector<int>freq,int &cnt){
+      if(!root)return;
+      freq[root->val]++;
+      if(!root->left && !root->right){
+        int countOdd=0;
+        for(int i=0;i<freq.size();i++){
+          if(freq[i]%2>0)countOdd++;
+        }
+       if(countOdd<=1)cnt++; 
+      }
+      dfs(root->left,freq,cnt);
+      dfs(root->right,freq,cnt);
+    }
+	
+	
+    int pseudoPalindromicPaths (TreeNode* root) {
+      int cnt=0;
+      vector<int> freq(10,0);
+      dfs(root,freq,cnt);
+      return cnt; 
     }
 };
