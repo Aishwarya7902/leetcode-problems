@@ -106,6 +106,7 @@ SC: O(h) will be auxiliary space
 PSEUDO CODE:
 ************************************  LEARNING**********************************************************************************
 1. agr kabhi tumhe palindrome check karna ho na to agr ek se jyada element ki odd frequency hai then wo palindrome kabhi ni hoga
+2.agr kisi node ka left and right child dono hi null hai the wo pakka leaf node hai
 
 ************************************************************************************************************************************
 */
