@@ -35,6 +35,7 @@ public:
 
 /*
 OPTIMISATION
+VIDEO: https://www.youtube.com/watch?v=WLdFNdRnXl8
 pseudo code:
 1.maintain a sum variable
 2.traverse nums if value at that index is divisible by 2 store it in sum
