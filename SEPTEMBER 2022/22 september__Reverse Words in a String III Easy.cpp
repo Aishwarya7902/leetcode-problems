@@ -39,3 +39,34 @@ public:
       return s;
     }
 };
+
+/*
+method 2
+self explanatory
+blog:https://leetcode.com/problems/reverse-words-in-a-string-iii/discuss/842597/4-wayseasy-understandingc%2B%2Bfaster
+
+*/
+
+class Solution {
+public:
+  
+    string reverseWords(string s) {
+     int n=s.size();
+      string result="",word;
+      for(int i=0;i<n;i++){
+        if(s[i]!=' '){
+          word+=s[i];
+        }
+        else{
+          reverse(word.begin(),word.end());
+          result+=word;
+          result+=" ";
+          word.clear();
+        }
+      }
+      reverse(word.begin(),word.end());
+      result+=word;
+      return result;
+    }
+};
+
