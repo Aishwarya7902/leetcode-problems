@@ -15,10 +15,15 @@ pseudo code:
 1.make a 2d ans vector
 2.make a curr vector
 3.if root is null simply return
-4.
-tc:
-sc:
-video:
+4.add root val to sum
+5.if(sum==targetSum) and if it is a leaf node then add curr vector to ans vector
+6.call left
+7.call right
+8.now backtrack .ie remove root->val from sum as well as remove it from curr vector
+9.return ans
+tc: O(n)
+sc: O(1)
+video:  https://www.youtube.com/watch?v=f0T9sNWkBZA
 blog:
 */
 class Solution {
