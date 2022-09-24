@@ -3,7 +3,7 @@ PROBLEM: https://leetcode.com/problems/path-sum-ii/
 /* 
 MY APPROACH
 to dekho is question ko solve karne se pahle niche given question ko solve kar ke aao fir ye question bilkul aasani se ho jayega
-MOST IMPORTANT THING IS DRY KARNA....BHAI DRY JARUR KARO HAR QUESTION ME SABKUCH CLEAR HO JATA HAI YAR✌✌✌✌🙌
+MOST IMPORTANT THING IS DRY RUN KARNA....BHAI DRY RUN JARUR KARO HAR QUESTION ME SABKUCH CLEAR HO JATA HAI YAR✌✌✌✌🙌
 
 prerequisite problem: https://leetcode.com/problems/path-sum/
 video explanation: https://www.youtube.com/watch?v=Hg82DzMemMI
